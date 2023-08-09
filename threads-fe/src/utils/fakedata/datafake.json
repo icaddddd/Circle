@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "author_picture": "https://karawangbekasi.disway.id/upload/3338a8270258b7bf24a4dbbc74574b25.jpg",
+        "author_full_name": "Yoona",
+        "author_username": "yoona_ajah",
+        "posted_at": "4h",
+        "content": "maksud kalian tuh apa sih gajelas banget",
+        "image": "https://img.okezone.com/content/2018/05/11/33/1897062/gaya-yoona-snsd-temui-penggemarnya-di-new-york-dengan-rambut-di-roll-hqLXRSbBmy.jpg",
+        "likes_count": 10,
+        "replies_count": 30,
+        "is_liked": true
+    },
+    {
+        "id": 2,
+        "author_picture": "https://assets.pikiran-rakyat.com/crop/49x6:1064x539/x/photo/2021/06/03/2129887814.jpg",
+        "author_full_name": "Ariel Tatum",
+        "author_username": "ariel_ajah",
+        "posted_at": "5h",
+        "content": "aku jelek ga sih gais",
+        "image": "https://imgsrv2.voi.id/Se_LuTNh-L-t7xNTiHoaLxHfLm1EnfL2j_yVbgIAOCM/auto/1200/675/sm/1/bG9jYWw6Ly8vcHVibGlzaGVycy8yNDE0MDUvMjAyMzAxMDMxNjAxLW1haW4uY3JvcHBlZF8xNjcyNzM2ODI5LmpwZWc.jpg",
+        "likes_count": 15,
+        "replies_count": 35,
+        "is_liked": true
+    },
+    {
+        "id": 3,    
+        "author_picture": "https://media.hitekno.com/thumbs/2021/06/24/72174-brand-ambassador-bigetron-esports-angie-marcheria-instagramangiemstwn/730x480-img-72174-brand-ambassador-bigetron-esports-angie-marcheria-instagramangiemstwn.jpg",
+        "author_full_name": "Angie Marcheria",
+        "author_username": "Angie_ajah",
+        "posted_at": "5h",
+        "content": "aku cantik banget",
+        "image": "https://i0.wp.com/esportsnesia.com/wp-content/uploads/2022/04/277697831_647273236375869_6873775973428423718_n1.jpg",
+        "likes_count": 15,
+        "replies_count": 35,
+        "is_liked": true
+    }
+]
