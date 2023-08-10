@@ -9,19 +9,19 @@
         "image": "https://img.okezone.com/content/2018/05/11/33/1897062/gaya-yoona-snsd-temui-penggemarnya-di-new-york-dengan-rambut-di-roll-hqLXRSbBmy.jpg",
         "likes_count": 10,
         "replies_count": 30,
-        "is_liked": true
+        "is_liked": false
     },
     {
         "id": 2,
         "author_picture": "https://assets.pikiran-rakyat.com/crop/49x6:1064x539/x/photo/2021/06/03/2129887814.jpg",
         "author_full_name": "Ariel Tatum",
         "author_username": "ariel_ajah",
-        "posted_at": "5h",
+        "posted_at": "3h",
         "content": "aku jelek ga sih gais",
         "image": "https://imgsrv2.voi.id/Se_LuTNh-L-t7xNTiHoaLxHfLm1EnfL2j_yVbgIAOCM/auto/1200/675/sm/1/bG9jYWw6Ly8vcHVibGlzaGVycy8yNDE0MDUvMjAyMzAxMDMxNjAxLW1haW4uY3JvcHBlZF8xNjcyNzM2ODI5LmpwZWc.jpg",
         "likes_count": 15,
         "replies_count": 35,
-        "is_liked": true
+        "is_liked": false
     },
     {
         "id": 3,    
@@ -31,8 +31,20 @@
         "posted_at": "5h",
         "content": "aku cantik banget",
         "image": "https://i0.wp.com/esportsnesia.com/wp-content/uploads/2022/04/277697831_647273236375869_6873775973428423718_n1.jpg",
-        "likes_count": 15,
-        "replies_count": 35,
-        "is_liked": true
+        "likes_count": 45,
+        "replies_count": 55,
+        "is_liked": false
+    },
+    {
+        "id": 4,    
+        "author_picture": "https://assets.jatimnetwork.com/crop/0x0:0x0/750x500/webp/photo/2023/04/03/Perjalanan-karir-Tissa-Biani-di-dunia-entertainment-3322796885.png",
+        "author_full_name": "Tissa Biani",
+        "author_username": "Tissa_ajah",
+        "posted_at": "6h",
+        "content": "aku cantik banget ga sih gais duh",
+        "image": "https://awsimages.detik.net.id/community/media/visual/2020/12/26/cantiknya-tissa-biani-saat-berkebun-dan-masak_169.jpeg?w=1200",
+        "likes_count": 25,
+        "replies_count": 30,
+        "is_liked": false
     }
 ]

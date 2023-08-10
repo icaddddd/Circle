@@ -1,11 +1,12 @@
-import {Box, Button, CardBody, Heading, Icon, Stack, Text} from "@chakra-ui/react"
+import {Box, Button, Card, CardBody, Heading, Icon, Stack, Text} from "@chakra-ui/react"
 import { AiFillCheckCircle } from "react-icons/ai"
 import { Image } from "@chakra-ui/react"
 
 export default function ProfileKanan(){
     return(
+      <Card margin={2} padding={1}>
         <CardBody>
-    <Box display={"flex"} flexDirection={"column"}>
+      <Box display={"flex"} flexDirection={"column"}>
       <Image borderRadius={10}
         src="https://media.hitekno.com/thumbs/2022/07/31/90849-vonzy-brand-ambassador-onic-esports/730x480-img-90849-vonzy-brand-ambassador-onic-esports.jpg"
       />
@@ -26,6 +27,7 @@ export default function ProfileKanan(){
       </Box>
     </Stack>
   </CardBody>
+  </Card>
     )
 }
 

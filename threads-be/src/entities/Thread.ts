@@ -7,7 +7,7 @@ export class Thread {
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+    @Column({ type: "date", default: () => "CURRENT_TIMESTAMP" })
     posted_at: Date
 
     @Column()
@@ -16,13 +16,13 @@ export class Thread {
     @Column()
     image: string
 
-    @Column()
+    @Column({nullable: true})
     liked_count: string
 
-    @Column()
+    @Column({nullable: true})
     replies_count: string
 
-    @Column()
+    @Column({nullable: true})
     is_liked: boolean
     
     @ManyToOne(() => User, (user) => user.threads)

@@ -31,18 +31,22 @@ class ThreadServices{
         return res.status(200).json(thread)
     }
 
-    async create(req: Request, res: Response){
-        const data = req.body
-
-        const thread = this.threadRepository.create({
-           
-            content: data.content,
-            image: data.image,
-           
-        })
+    async create(req: Request, res: Response): Promise<Response>{
+        const {content, image} = req.body
+        try {
+            const thread = this.threadRepository.create({
+            
+                content,
+                image,
+            
+            })
         
-        const createThread = this.threadRepository.save(thread)
-        return res.status(200).json(createThread)
+            const createThread = await this.threadRepository.save(thread)
+
+            return res.status(200).json(createThread)
+        } catch (err) {
+            return res.status(500).json({error: err})
+        }
     }
 
     async delete(req: Request, res:Response){

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import ThreadServices from "../services/service-threads";
+import ThreadServices from "../services/ServiceThreads";
 
 class ThreadsController {
     find(req: Request, res: Response) {

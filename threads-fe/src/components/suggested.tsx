@@ -1,9 +1,11 @@
-import {Box, Button, Text} from "@chakra-ui/react"
+import {Box, Button, Card, Text} from "@chakra-ui/react"
 import { Image } from "@chakra-ui/react"
 
 export default function SuggestedFollow(){
     return(
-        <><Text fontWeight={"bold"}>Suggested For You</Text><Box display={"flex"} justifyContent={"space-between"}>
+        <>
+        <Card margin={2} padding={3}>
+        <Text fontWeight={"bold"}>Suggested For You</Text><Box display={"flex"} justifyContent={"space-between"}>
             <Box display={"flex"}>
                 <Image borderRadius={"full"} height={"45px"} width={"45px"} objectFit={"cover"} src="https://asset-2.tstatic.net/kupang/foto/bank/images/seperti-apa-potret-luna-maya-dalam-pemotretan-terbarunya-yuk-simak.jpg" />
                 <Box ml={4}>
@@ -47,6 +49,8 @@ export default function SuggestedFollow(){
                 <Box>
                     <Button width={"100px"} borderRadius={15}>Follow</Button>
                 </Box>
-            </Box></>
+            </Box>
+            </Card>
+        </>
     )
 }

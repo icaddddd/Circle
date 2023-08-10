@@ -9,8 +9,6 @@ export function Detail() {
     const {id} = useParams()
     const [data, _] = useState(datafake)
     const element = data.find((el) => el.id === Number(id))
-    
-    console.log(element?.id)
 
     return element ? (
         <>

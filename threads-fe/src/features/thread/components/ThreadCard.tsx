@@ -2,39 +2,22 @@ import { ChatIcon, StarIcon } from "@chakra-ui/icons"
 import { AiFillCheckCircle } from "react-icons/ai"
 import { Avatar, Box, Button, Card, Image, Text } from "@chakra-ui/react"
 import { Icon } from '@chakra-ui/react'
-import { useState } from "react"
 import { Link } from "react-router-dom"
-
-// export interface User {
-//     id?: number,
-//     picture: string,
-//     fullname: string,
-//     username: string
-// }
-
-export interface ThreadCard {
-    id?: number,
-    author_full_name: string,
-    author_picture: string,
-    author_username: string,
-    posted_at: string,
-    content: string,
-    image: string,
-    likes_count: number,
-    replies_count: number,
-    is_liked: boolean,
-}
+import { useState } from "react"
+import { IThreadCard } from "@/interfaces/interface"
 
 
-export function ThreadCard(props: ThreadCard) {
+export function ThreadCard(props: IThreadCard) {
+  
+
     const [like, setLike] = useState(props.likes_count || 0)
     const [isLiked, setIsLiked] = useState(props.is_liked || false) 
 
     const handleClick = () => {
         if (isLiked) {
-            setLike(like - 1)
-        } else {
             setLike(like + 1)
+        } else {
+            setLike(like - 1)
         }
 
         setIsLiked(!isLiked)
@@ -43,13 +26,12 @@ export function ThreadCard(props: ThreadCard) {
     return (
         <>
         
-            <Card display={"flex"} gap={1} p={5} my={7}>
-                    
+            <Card margin={2} padding={5}>
                     <Box>
                         <Box display={"flex"} gap={1} alignItems={"center"}>
-                            <Avatar src={props.author_picture} mr={3}/>
-                            <Text fontWeight={"bold"}>{props.author_full_name}</Text>
-                            <Text ml={2} fontWeight={"light"}>@{props.author_username} <Icon color={"blue.300"} as={AiFillCheckCircle} /></Text>
+                            <Avatar src={props.user?.picture} mr={3}/>
+                            <Text fontWeight={"bold"}>{props.user?.fullname}</Text>
+                            <Text ml={2} fontWeight={"light"}>@{props.user?.username} <Icon color={"blue.300"} as={AiFillCheckCircle} /></Text>
                             <Text ml={2}>{props.posted_at}</Text>
                         </Box>    
                         
@@ -60,17 +42,16 @@ export function ThreadCard(props: ThreadCard) {
                         <Box display={"flex"} gap={5}>
                             <Box>
                                 
-                                <Button onClick={handleClick} ml={2} colorScheme={isLiked ? "pink" : "gray"}> <StarIcon /> {like} likes</Button>
+                                <Button width={'120px'} ml={2} onClick={handleClick} colorScheme={isLiked ? "gray" : "pink"} > <StarIcon mr={3}/> {like} likes</Button>
                             </Box>
                             <Box>
                             <Link to={"detail/" + props.id}>
-                                <Button ml={2} colorScheme="teal"><ChatIcon />{props.replies_count} replies</Button>
+                                <Button width={'120px'} ml={2} colorScheme="green"><ChatIcon mr={3}/>{props.replies_count} replies</Button>
                             </Link>
                             </Box>
                         </Box>
                     </Box>
                 </Card>
-        
         </>
     )
 }

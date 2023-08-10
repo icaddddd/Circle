@@ -1,6 +1,7 @@
 import * as express from "express"
 import { Request, Response } from "express"
-import controllersThreads from "../controllers/controllers-threads"
+import controllersThreads from "../controllers/ControllerThread"
+// import authenticate from "../libs/auth"
 
 
 const router = express.Router()
@@ -17,8 +18,10 @@ router.get("/threads", (req: Request, res: Response) => {
 
 router.get("/thread", controllersThreads.find)
 router.get("/thread/:id", controllersThreads.findOne)
-router.post("/thread/create", controllersThreads.create)
+router.post("/thread", controllersThreads.create)
 router.delete("/thread/delete/:id", controllersThreads.delete)
 router.patch("/thread/update/:id", controllersThreads.update)
+
+// router.post("/auth/register", authcontrollerregister)
 
 export default router
