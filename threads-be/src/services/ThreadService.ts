@@ -4,8 +4,7 @@ import { AppDataSource } from "../data-source";
 import { Request, Response } from "express";
 
 class ThreadServices{
-        private readonly threadRepository: Repository<Thread> = 
-        AppDataSource.getRepository(Thread);
+        private readonly threadRepository: Repository<Thread> = AppDataSource.getRepository(Thread);
         static find: any;
 
     async find(req: Request, res: Response): Promise<Response> {
@@ -24,7 +23,7 @@ class ThreadServices{
         const id = parseInt(req.params.id)
         const thread = await this.threadRepository.findOne({
             where: {
-                id
+                id: id,
             },
             relations: ["user"]
         })
@@ -37,7 +36,7 @@ class ThreadServices{
             const thread = this.threadRepository.create({
             
                 content,
-                image,
+                image: res.locals.filename,
             
             })
         

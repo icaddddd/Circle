@@ -7,7 +7,11 @@ export function useHooks(){
 
   async function fetchData(){
       try {
-          const response = await API.get("/thread")
+          const response = await API.get("/thread",{
+            headers: {
+              Authorization: `Bearer ${localStorage.token}`
+            }
+          })
           setThreads(response.data)
           console.log("API data :", response.data)
       } catch (error){
@@ -25,6 +29,15 @@ export function useHooks(){
     image: '',
   })
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const {name, value} = event.target
+
+    setFormData((prevData) => ({
+        ...prevData,
+        [name]: value
+    })) 
+  }
+
   const fetchCreatePost = async (event: React.FormEvent) => {
     event.preventDefault()
     try {
@@ -36,14 +49,14 @@ export function useHooks(){
     }
   }
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const {name, value} = event.target
 
-    setFormData((prevData) => ({
-        ...prevData,
-        [name]: value
-    }))
-  }
+
+  
+
+
+
+
+  
 
   return { Threads, formData, fetchData, setThreads, fetchCreatePost, handleChange}
 

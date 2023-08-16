@@ -1,24 +1,26 @@
 import Navbar from "@/features/sidebarleft/sidebarleft";
 import { Box, Grid, GridItem } from "@chakra-ui/react";
-import HomeBar from "@/features/thread/components/HomeBar";
 import SideBarRight from "@/features/sidebarright/sidebarright";
+import { Detail } from "@/features/thread/components/Detail";
 
-export default function Home(){
+export default function DetailPage(){
+
+  
 
     return (
         <>
     <Box display={"flex"}>
       <Grid templateColumns='repeat(6, 1fr)'>
-        <GridItem colSpan={1}>
+        <GridItem w='100%' colSpan={1}>
             <Navbar/>
         </GridItem>
-        <GridItem colSpan={3}>
-          <HomeBar/>
+        <GridItem w='100%' colSpan={3}>
+          <Detail/>
         </GridItem>
-        <GridItem colSpan={2}>
+        <GridItem w='100%' colSpan={2}>
           <SideBarRight />
-        </GridItem>
-      </Grid>
+          </GridItem>
+        </Grid>
     </Box>
     
     </>

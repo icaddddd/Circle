@@ -13,7 +13,7 @@ return(
         <FormControl>
             <FormLabel fontSize={30} fontWeight={"bold"}>Home</FormLabel>
               <Input name="content" onChange={handleChange} value={formData.content} type='text' placeholder="what's on ur mind?" />
-              <Input name="image" onChange={handleChange} value={formData.image} mt={2} type='text' placeholder="input ur pict here!" />
+              <Input name="image" onChange={handleChange} value={formData.image} mt={2} type='file' border={"none"} placeholder="input ur pict here!" />
               <Button type="submit" borderRadius={20} width={"20%"} colorScheme="green" color={"white"} px={15} float={"right"} mt={2}>Submit</Button>           
         </FormControl>
     </form>

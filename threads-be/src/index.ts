@@ -3,7 +3,7 @@ import { AppDataSource } from "./data-source"
 import { Thread } from "./entities/Thread"
 import * as express from "express"
 import { Request, Response } from "express"
-import routes from "./route/route"
+import routes from "./route"
 import exp = require("constants")
 
 var cors = require('cors')

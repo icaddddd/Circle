@@ -6,7 +6,7 @@ import { Box } from "@chakra-ui/react";
 export function SideBarRight(){
     return(
         <>
-        <Box position={"fixed"}>
+        <Box>
         <ProfileKanan />
         <SuggestedFollow />
         <PoweredBy />

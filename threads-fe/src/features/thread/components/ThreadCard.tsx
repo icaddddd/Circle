@@ -13,7 +13,7 @@ export function ThreadCard(props: IThreadCard) {
     const [like, setLike] = useState(props.likes_count || 0)
     const [isLiked, setIsLiked] = useState(props.is_liked || false) 
 
-    const handleClick = () => {
+    function handleClick() {
         if (isLiked) {
             setLike(like + 1)
         } else {
@@ -22,6 +22,9 @@ export function ThreadCard(props: IThreadCard) {
 
         setIsLiked(!isLiked)
     }
+
+    const [showImage, setShowImage] = useState<boolean>(true)
+
 
     return (
         <>
@@ -37,18 +40,19 @@ export function ThreadCard(props: IThreadCard) {
                         
                         <Box mt={5}>
                             <Text>{props.content}</Text>
-                            <Image my={5} borderRadius={30} src={props.image}></Image>
+                            {showImage && (
+                                <Image my={5} borderRadius={30} src={props.image} onError={() => setShowImage(false)}></Image>
+                            )}
                         </Box>
-                        <Box display={"flex"} gap={5}>
+                        <Box display={"flex"} gap={5} mt={5}>
                             <Box>
-                                
                                 <Button width={'120px'} ml={2} onClick={handleClick} colorScheme={isLiked ? "gray" : "pink"} > <StarIcon mr={3}/> {like} likes</Button>
                             </Box>
+                            <Link to={"/detail/" + props.id}>
                             <Box>
-                            <Link to={"detail/" + props.id}>
                                 <Button width={'120px'} ml={2} colorScheme="green"><ChatIcon mr={3}/>{props.replies_count} replies</Button>
-                            </Link>
                             </Box>
+                            </Link>
                         </Box>
                     </Box>
                 </Card>

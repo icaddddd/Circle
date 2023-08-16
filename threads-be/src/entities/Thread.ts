@@ -1,5 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, ManyToOne } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, Like } from "typeorm"
 import { User } from "./User"
+import { Reply } from "./Reply"
+import { Likes } from "./Likes"
 
 @Entity({ name: "threads"})
 export class Thread {
@@ -15,17 +17,14 @@ export class Thread {
 
     @Column()
     image: string
-
-    @Column({nullable: true})
-    liked_count: string
-
-    @Column({nullable: true})
-    replies_count: string
-
-    @Column({nullable: true})
-    is_liked: boolean
     
     @ManyToOne(() => User, (user) => user.threads)
-    user:User[]
+    user:User
+
+    @OneToMany(() => Likes, (like) => like.thread)
+    like:Likes[]
+
+    @OneToMany(() => Reply, (reply) => reply.thread)
+    reply: Reply[]
 
 }
