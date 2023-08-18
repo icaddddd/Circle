@@ -31,7 +31,7 @@ export const authSlice = createSlice({
         AUTH_CHECK: (_, action) => {
             const payload = action.payload
             console.log("redux auth check:", payload)
-            localStorage.setItem("token", payload.token)
+            // localStorage.setItem("token", payload.token)
 
             const user:IUser = {
                 id: payload.id,
@@ -43,13 +43,9 @@ export const authSlice = createSlice({
             return user
         },
 
-        AUTH_ERROR: () => {
+        AUTH_ERROR: () => {},
 
-        },
-
-        AUTH_LOGOUT:() => {
-            
-        }
+        AUTH_LOGOUT: () => {},
 
     }
 })

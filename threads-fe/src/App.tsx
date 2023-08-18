@@ -38,10 +38,11 @@ function App(){
             setIsLoading(false)
         }
     },[])
+    // })
 
     return(
     <>
-    {isLoading ? null :
+    {isLoading ? null : (
        
             <Routes>
                 <Route path="/home" element={<Home/>} />
@@ -51,7 +52,7 @@ function App(){
             </Routes>
         
     
-    }
+    )}
     </>
     )
 }
