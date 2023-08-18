@@ -49,18 +49,6 @@ export function useHooks(){
     }
   }
 
-
-
-  
-
-
-
-
-  
-
   return { Threads, formData, fetchData, setThreads, fetchCreatePost, handleChange}
 
-
-
-  
 }

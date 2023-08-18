@@ -1,4 +1,5 @@
 import { IUser } from "@/interfaces/interface";
+import { setAuthToken } from "@/lib/api";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialAuthState : IUser  = {
@@ -16,6 +17,7 @@ export const authSlice = createSlice({
         AUTH_LOGIN: (_, action) => {
             const payload = action.payload
             console.log("ini datamu bro", action.payload)
+            setAuthToken(payload.token)
             localStorage.setItem("token", payload.token)
 
             const user:IUser = {
@@ -32,6 +34,7 @@ export const authSlice = createSlice({
             const payload = action.payload
             console.log("redux auth check:", payload)
             // localStorage.setItem("token", payload.token)
+            setAuthToken(payload.token)
 
             const user:IUser = {
                 id: payload.id,

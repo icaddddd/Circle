@@ -28,7 +28,7 @@ export default function SignupCard() {
     email: "",
     username: "",
     fullname: "",
-    password: ''
+    password: ""
   })
 
   function handleChange(event:ChangeEvent<HTMLInputElement>){

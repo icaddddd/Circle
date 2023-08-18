@@ -24,7 +24,7 @@ function App(){
             setIsLoading(false)
         } catch (error) {
             dispatch(AUTH_ERROR())
-            localStorage.removeItem("token")
+            localStorage.removeItem('token')
             setIsLoading(false)
             navigate("/")
             console.log("error auth check")
@@ -36,13 +36,14 @@ function App(){
             AuthCheck()
         } else {
             setIsLoading(false)
+            navigate("/")
         }
     },[])
     // })
 
     return(
     <>
-    {isLoading ? null : (
+    {isLoading ? null : 
        
             <Routes>
                 <Route path="/home" element={<Home/>} />
@@ -52,7 +53,7 @@ function App(){
             </Routes>
         
     
-    )}
+    }
     </>
     )
 }
