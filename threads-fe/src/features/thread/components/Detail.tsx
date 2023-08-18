@@ -9,12 +9,16 @@ import { API } from "@/lib/api";
 
 export function Detail() {
     const {id} = useParams()
-    
-    const [Threads, setThreads] = useState<IThreadCard[]>([])  
+
+    const [Threads, setThreads] = useState<IThreadCard[]>()  
 
     async function fetchData(){
         try {
-            const response = await API.get(`/thread/${id}`)
+            const response = await API.get("/thread",{
+              headers: {
+                Authorization: `Bearer ${localStorage.token}`
+              }
+            })
             setThreads(response.data)
             console.log("API data :", response.data)
         } catch (error){
@@ -26,7 +30,8 @@ export function Detail() {
         fetchData()
     }, [])
 
-    const element = Threads.find((el) => el.id === Number(id))
+
+    const element = Threads?.find((el) => el.id == Number(id) )
 
     const [showImage, setShowImage] = useState<boolean>(true)
 

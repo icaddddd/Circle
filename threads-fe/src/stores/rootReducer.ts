@@ -1,12 +1,12 @@
-// import { combineReducers } from "@reduxjs/toolkit";
-// import {authSlice} from "./slices/authSlice"
+import { combineReducers } from "@reduxjs/toolkit";
+import {authSlice} from "./slices/authSlice"
 
-// export const { AUTH_CHECK, AUTH_LOGIN, AUTH_ERROR, AUTH_LOGOUT } = authSlice.actions
+export const { AUTH_CHECK, AUTH_LOGIN, AUTH_ERROR, AUTH_LOGOUT } = authSlice.actions
 
-// export const authReducer = authSlice.reducer 
+export const authReducer = authSlice.reducer 
 
-// const rootReducer = combineReducers({
-//     auth: authReducer
-// })
+const rootReducer = combineReducers({
+    auth: authReducer
+})
 
-// export default rootReducer lalu hapus code semuanya
+export default rootReducer 

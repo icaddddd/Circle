@@ -109,7 +109,7 @@ export default function SignupCard() {
             </Stack>
             <Stack pt={1}>
               <Text align={'center'} onClick={()=> navigate("/login")}>
-                Already a user? <Link to={"/login"}><Text color={'green'}>Login</Text></Link>
+                Already a user? <Link to={"/"}><Text color={'green'}>Login</Text></Link>
               </Text>
             </Stack>
           </Stack>

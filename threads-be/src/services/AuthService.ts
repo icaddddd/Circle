@@ -22,17 +22,17 @@ class AuthService {
             })
         }
 
-        const checkEmail = await this.authRepository.findOne({
+        const checkEmail = await this.authRepository.count({
             where: {
                 email: value.email,
                 username: value.username
             }
         })
 
-        if (checkEmail) {
-            return res.status(400).json ({
-                error: "email already exist!"
-            })
+        if (checkEmail>0) {
+            return res.status(400).json (
+                "email already exist!"
+            )
         }
 
         const passwordHashed = await bcrypt.hash(value.password, 10)
@@ -66,7 +66,7 @@ class AuthService {
                 where: {
                     email: value.email,
                 },
-                select:["id", "email", "password"]
+                select:["id", "email", "password", "fullname", "username", "picture"]
             })
 
         if (!checkEmail){
@@ -83,7 +83,10 @@ class AuthService {
         const user = {
             id: checkEmail.id,
             email: checkEmail.email,
-            password: checkEmail.password
+            password: checkEmail.password,
+            fullname: checkEmail.fullname,
+            username: checkEmail.username,
+            picture: checkEmail.picture
         }
         const token = jwt.sign({ userId: (await user).id}, JWT_SECRET_KEY, {
             expiresIn: "1h"

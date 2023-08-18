@@ -1,7 +1,7 @@
 'use client'
 
 import { IUserLogin } from '@/interfaces/interface'
-import { API } from '@/lib/api'
+import { API, setAuthToken } from '@/lib/api'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 import {
   Flex,
@@ -17,12 +17,16 @@ import {
   InputRightElement,
 } from '@chakra-ui/react'
 import { ChangeEvent, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-
+import {RootState} from "@/stores/slices/rootState"
+import { AUTH_LOGIN } from '@/stores/rootReducer'
+import { useDispatch } from 'react-redux'
 
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
+  const auth = useSelector((state: RootState) => state.auth)
 
   const [form, setForm] = useState<IUserLogin>({
     email: "",
@@ -40,13 +44,16 @@ export default function LoginPage() {
   async function handleLogin() {
     try {
       const response = await API.post('/auth/login', form)
+      dispatch(AUTH_LOGIN(response.data))
       console.log("login success", response)
-      localStorage.setItem("token", response.data.token)
+      // localStorage.setItem("token", response.data.token)
+      setAuthToken(localStorage.token)
       navigate('/home')
     } catch (err){
       console.log(err)
     }
   }
+  const dispatch = useDispatch()
 
   
   return (
