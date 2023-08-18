@@ -44,7 +44,7 @@ export default function SignupCard() {
     try {
       const response = await API.post('/auth/register', form)
       console.log("register success", response)
-      navigate("/login")
+      navigate("/")
     } catch (err){
       console.log(err)
     }
@@ -108,7 +108,7 @@ export default function SignupCard() {
               </Button> 
             </Stack>
             <Stack pt={1}>
-              <Text align={'center'} onClick={()=> navigate("/login")}>
+              <Text align={'center'} onClick={()=> navigate("/")}>
                 Already a user? <Link to={"/"}><Text color={'green'}>Login</Text></Link>
               </Text>
             </Stack>
