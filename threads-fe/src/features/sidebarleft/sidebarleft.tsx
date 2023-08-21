@@ -12,16 +12,31 @@ export default function Navbar() {
         <>
         <Box padding={5} position={"fixed"}>
           <Text fontSize={50} color={"green"} fontWeight={"bold"}>Circle</Text>
-          <Box my={5}>
+          <Box my={3}>
             <Link to={"/home"}>
-              <Text fontSize={20} my={3}><Icon as={AiFillHome} mr={3}></Icon>Home</Text>
+              <Box display={'flex'} alignItems={"center"}>
+                <Icon as={AiFillHome} mr={3}></Icon>
+                <Text fontSize={20} my={3}>Home</Text>
+              </Box>
             </Link>
-            <Text fontSize={20} my={3}><Icon as={AiOutlineSearch} mr={3}></Icon>Search</Text>
-            <Text fontSize={20} my={3}><Icon as={RiUserFollowFill} mr={3}></Icon>Follows</Text>
-            <Text fontSize={20} my={3}><Icon as={CgProfile} mr={3}></Icon>Profile</Text>
+            <Box display={'flex'} alignItems={"center"}>
+              <Icon as={AiOutlineSearch} mr={3}></Icon>
+              <Text fontSize={20} my={3}>Search</Text>
+            </Box>
+            <Box display={'flex'} alignItems={"center"}>
+              <Icon as={RiUserFollowFill} mr={3}></Icon>
+              <Text fontSize={20} my={3}>Follows</Text>
+            </Box>
+            <Box display={'flex'} alignItems={"center"}>
+              <Icon as={CgProfile} mr={3}></Icon>
+              <Text fontSize={20} my={3}>Profile</Text>
+            </Box>
             <Button width={"200px"} colorScheme="green">Create Post</Button>
             <Link to='/'>
-              <Text fontSize={20} my={3}><Icon as={BiLogOut} mr={3}></Icon>Logout</Text>
+            <Box display={'flex'} alignItems={"center"}>
+              <Icon as={BiLogOut} mr={3}></Icon>
+              <Text fontSize={20} my={3}>Logout</Text>
+            </Box>
             </Link>
           </Box>
         </Box>
