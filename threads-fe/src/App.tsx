@@ -18,9 +18,10 @@ function App(){
     async function AuthCheck() {
         try {
             setAuthToken(localStorage.token)
+            
             const response = await API.get("/check")
             dispatch(AUTH_CHECK(response.data))
-            console.log("ini auth check", response)
+            console.log("ini auth check", response.data)
             setIsLoading(false)
         } catch (error) {
             dispatch(AUTH_ERROR())

@@ -1,6 +1,6 @@
 'use client'
 
-import { IUserLogin } from '@/interfaces/interface'
+import { IUserLogin } from '@/interfaces/user'
 import { API, setAuthToken } from '@/lib/api'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 import {
@@ -47,7 +47,7 @@ export default function LoginPage() {
       dispatch(AUTH_LOGIN(response.data))
       console.log("login success", response)
       // localStorage.setItem("token", response.data.token)
-      setAuthToken(localStorage.token)
+      // setAuthToken(localStorage.token)
       navigate('/home')
     } catch (err){
       console.log(err)

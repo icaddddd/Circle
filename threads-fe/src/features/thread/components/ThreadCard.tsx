@@ -1,27 +1,17 @@
-import { ChatIcon, StarIcon } from "@chakra-ui/icons"
+import { ChatIcon } from "@chakra-ui/icons"
 import { AiFillCheckCircle } from "react-icons/ai"
-import { Avatar, Box, Button, Card, Image, Text } from "@chakra-ui/react"
+import { BsFillSuitHeartFill } from "react-icons/bs"
+import { Avatar, Box, Card, Image, Text } from "@chakra-ui/react"
 import { Icon } from '@chakra-ui/react'
 import { Link } from "react-router-dom"
 import { useState } from "react"
-import { IThreadCard } from "@/interfaces/interface"
+import { IThreadCard } from "@/interfaces/thread"
+import { useLike } from "@/hooks/useLike"
 
 
 export function ThreadCard(props: IThreadCard) {
   
-
-    const [like, setLike] = useState(props.likes_count || 0)
-    const [isLiked, setIsLiked] = useState(props.is_liked || false) 
-
-    function handleClick() {
-        if (isLiked) {
-            setLike(like + 1)
-        } else {
-            setLike(like - 1)
-        }
-
-        setIsLiked(!isLiked)
-    }
+    const {handlePostLike} = useLike()
 
     const [showImage, setShowImage] = useState<boolean>(true)
 
@@ -45,12 +35,14 @@ export function ThreadCard(props: IThreadCard) {
                             )}
                         </Box>
                         <Box display={"flex"} gap={5} mt={5}>
-                            <Box>
-                                <Button width={'120px'} ml={2} onClick={handleClick} colorScheme={isLiked ? "gray" : "pink"} > <StarIcon mr={3}/> {like} likes</Button>
+                            <Box display={'flex'} alignItems={"center"}>
+                                <Icon as={BsFillSuitHeartFill} mr={3} fontSize={20} color={props.is_liked ? "red" : "grey"} onClick={() => handlePostLike(props.id, props.is_liked)} cursor={"pointer"}/>
+                                <Text>{props.likes_count} Likes</Text>
                             </Box>
                             <Link to={"/detail/" + props.id}>
-                            <Box>
-                                <Button width={'120px'} ml={2} colorScheme="green"><ChatIcon mr={3}/>{props.replies_count} replies</Button>
+                            <Box display={'flex'} alignItems={"center"}>
+                                <ChatIcon fontSize={20} mr={3}/>
+                                <Text>{props.replies_count} Replies</Text>
                             </Box>
                             </Link>
                         </Box>

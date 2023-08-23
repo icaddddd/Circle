@@ -17,7 +17,7 @@ import { ChangeEvent, useState } from 'react'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 import { Link, useNavigate } from 'react-router-dom'
 import { API } from '@/lib/api'
-import { IUserRegister } from '@/interfaces/interface'
+import { IUserRegister } from '@/interfaces/user'
 
 
 

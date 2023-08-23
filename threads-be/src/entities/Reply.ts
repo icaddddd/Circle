@@ -10,9 +10,15 @@ export class Reply{
     @Column()
     content: string
 
-    @ManyToOne(() => User, (user) => user.reply)
+    @ManyToOne(() => User, (user) => user.replies, {
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
+    })
     user: User
 
-    @ManyToOne(() => Thread, (thread) => thread.reply)
-    thread:Thread[]
+    @ManyToOne(() => Thread, (thread) => thread.replies, {
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE"
+    })
+    thread:Thread
 }

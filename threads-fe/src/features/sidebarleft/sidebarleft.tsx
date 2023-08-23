@@ -1,3 +1,4 @@
+import { useThreads } from "@/hooks/useThreads";
 import { Icon } from "@chakra-ui/icons";
 import { Box, Button, Text } from "@chakra-ui/react";
 import { AiFillHome, AiOutlineSearch } from "react-icons/ai";
@@ -7,6 +8,8 @@ import { RiUserFollowFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
+
+  const {handleLogout} = useThreads()
   
     return(
         <>
@@ -32,12 +35,10 @@ export default function Navbar() {
               <Text fontSize={20} my={3}>Profile</Text>
             </Box>
             <Button width={"200px"} colorScheme="green">Create Post</Button>
-            <Link to='/'>
-            <Box display={'flex'} alignItems={"center"}>
+            <Box display={'flex'} alignItems={"center"} onClick={handleLogout} cursor={"pointer"}>
               <Icon as={BiLogOut} mr={3}></Icon>
               <Text fontSize={20} my={3}>Logout</Text>
             </Box>
-            </Link>
           </Box>
         </Box>
         </>

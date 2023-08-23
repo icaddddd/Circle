@@ -14,13 +14,13 @@ class ThreadsController {
         ThreadServices.create(req, res)
     }
 
-    delete(req:Request, res:Response){
-        ThreadServices.delete(req, res)
-    }
+    // delete(req:Request, res:Response){
+    //     ThreadServices.delete(req, res)
+    // }
 
-    update(req:Request, res:Response){
-        ThreadServices.update(req,res)
-    }
+    // update(req:Request, res:Response){
+    //     ThreadServices.update(req,res)
+    // }
 }
 
 export default new ThreadsController()

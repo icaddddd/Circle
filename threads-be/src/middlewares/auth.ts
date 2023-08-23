@@ -19,6 +19,7 @@ const authenticate = (
     try {
         const loginSession = jwt.verify(token, "SecretKey")
         res.locals.loginSession = loginSession
+
         next()
     } catch(error){
         return res.status(401).json({

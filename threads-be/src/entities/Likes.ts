@@ -8,12 +8,15 @@ export class Likes {
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column()
-    is_likes: boolean
-
-    @ManyToOne(() => User, (user) => user.like)
+    @ManyToOne(() => User, (user) => user.likes, {
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE"
+    })
     user: User
 
-    @ManyToOne(() => Thread, (threads) => threads.like)
+    @ManyToOne(() => Thread, (threads) => threads.likes, {
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE"
+    })
     thread: Thread
 }

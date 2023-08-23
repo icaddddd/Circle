@@ -18,13 +18,22 @@ export class Thread {
     @Column()
     image: string
     
-    @ManyToOne(() => User, (user) => user.threads)
+    @ManyToOne(() => User, (user) => user.threads, {
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE"
+    })
     user:User
 
-    @OneToMany(() => Likes, (like) => like.thread)
-    like:Likes[]
+    @OneToMany(() => Likes, (like) => like.thread, {
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE"
+    })
+    likes:Likes[]
 
-    @OneToMany(() => Reply, (reply) => reply.thread)
-    reply: Reply[]
+    @OneToMany(() => Reply, (reply) => reply.thread, {
+        onDelete: "CASCADE", 
+        onUpdate: "CASCADE"
+    })
+    replies: Reply[]
 
 }

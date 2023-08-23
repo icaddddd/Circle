@@ -8,7 +8,7 @@ class AuthController {
 
     login(req: Request, res: Response) {
         AuthService.login(req, res)
-    }
+    }   
 
     checking(req: Request, res: Response) {
         AuthService.checking(req, res)

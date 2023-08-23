@@ -29,7 +29,7 @@ class AuthService {
             }
         })
 
-        if (checkEmail>0) {
+        if (checkEmail > 0) {
             return res.status(400).json (
                 "email already exist!"
             )
@@ -88,10 +88,14 @@ class AuthService {
             username: checkEmail.username,
             picture: checkEmail.picture
         }
-        const token = jwt.sign({ userId: (await user).id}, JWT_SECRET_KEY, {
+        const token = jwt.sign({ user }, JWT_SECRET_KEY, {
             expiresIn: "1h"
         })
-        return res.status(200).json({user : user, token: token})
+        return res.status(200).json({
+            message: "login sukses",
+            user,
+            token,
+        })
     } catch (error){
         return res.status(500).json("There's an error")
     }
@@ -101,10 +105,11 @@ class AuthService {
     async checking (req: Request, res: Response) {
         try {
             const loginSession = res.locals.loginSession
+            console.log("loginsession", loginSession)
 
             const user = await this.authRepository.findOne({
                 where: {
-                    id: loginSession.userId
+                    id: loginSession.user.id
                 },
                 select: ["id", "email", "username", "fullname", "password"]
             })

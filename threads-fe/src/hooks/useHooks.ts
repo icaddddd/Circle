@@ -1,4 +1,4 @@
-import { IThreadCard } from "@/interfaces/interface"
+import { IThreadCard } from "@/interfaces/thread"
 import { API } from "@/lib/api"
 import { useEffect, useState } from "react"
 
