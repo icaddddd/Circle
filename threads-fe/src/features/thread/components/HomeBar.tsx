@@ -1,4 +1,4 @@
-import { useHooks } from "@/hooks/useHooks";
+// import { useHooks } from "@/hooks/useHooks";
 import { Box, Button, Card, FormControl, FormLabel, Icon, Input } from "@chakra-ui/react";
 import { ThreadCard } from ".";
 import { BsImages } from "react-icons/bs";
@@ -6,8 +6,7 @@ import { useThreads } from "@/hooks/useThreads";
 
 
 export default function HomeBar() {
-    const {Threads} = useHooks()
-    const {handlePost, handleContentChange, handleImageChange} = useThreads()
+    const {handlePost, handleContentChange, handleImageChange, threads} = useThreads()
 
 return(
     <Card margin={2} padding={5}>
@@ -28,9 +27,9 @@ return(
     </form>
 
 
-    {Threads?.map((item, index) => {
+    {threads?.map((item, index) => {
         return (
-            <ThreadCard key={index} content={item.content} image={item.image} user={item.user} posted_at={""} likes_count={item.likes_count} replies_count={item.replies_count} is_liked={item.is_liked} id={item.id} />
+            <ThreadCard key={index} content={item.content} image={item.image} user={item.user} posted_at={item.posted_at} likes_count={item.likes_count} replies_count={item.replies_count} is_liked={item.is_liked} id={item.id} />
         )
     })}
     </Card>

@@ -8,7 +8,7 @@ export interface IThreadPost {
 export interface IThreadCard {
     id: number,
     user: IUser,
-    posted_at: string,
+    posted_at: Date,
     content: string,
     image: string,
     likes_count: number,

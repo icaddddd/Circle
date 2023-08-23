@@ -6,9 +6,6 @@ class LikesController {
         try {
             const loginSession = res.locals.loginSession 
             const response = await LikesService.create(req.body, loginSession)
-            console.log("login session con",loginSession)
-            console.log("req.body con",req.body)
-            console.log("contol res",response)
             return res.status(200).json(response)
         } catch (error) {
             return res

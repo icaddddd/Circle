@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Avatar, Box, Card, Text, Image, Button, Icon, FormControl, FormLabel, Input } from "@chakra-ui/react";
-import { StarIcon, ChatIcon } from "@chakra-ui/icons";
 import { AiFillCheckCircle } from "react-icons/ai";
 import { IThreadCard } from "@/interfaces/thread";
 import { API } from "@/lib/api";
 import { BsImages } from "react-icons/bs";
 import { useReply } from "@/hooks/useReply";
+import moment from 'moment'
 
 
 export function Detail() {
@@ -31,7 +31,7 @@ export function Detail() {
     const element = Threads?.find((el) => el.id == Number(id) )
     const [showImage, setShowImage] = useState<boolean>(true)
 
-    const {replies, handleChangeReply, handlePostReply, thread} = useReply()
+    const {replies, handleChangeReply, handlePostReply} = useReply()
 
 
     return element ? (
@@ -43,23 +43,13 @@ export function Detail() {
                             <Avatar src={element.user.picture} mr={3}/>
                             <Text fontWeight={"bold"}>{element.user.fullname}</Text>
                             <Text ml={2} fontWeight={"light"}>@{element.user.username} <Icon color={"blue.300"} as={AiFillCheckCircle} /></Text>
-                            <Text ml={2}>{element.posted_at}</Text>
+                            <Text ml={2}>{moment(element.posted_at).startOf('minute').fromNow()}</Text>
                         </Box>    
                         <Box mt={5}>
                             <Text>{element.content}</Text>
                             {showImage && (
                             <Image my={5} borderRadius={30} src={element.image} onError={() => setShowImage(false)}></Image>
                             )}
-                        </Box>
-                        <Box display={"flex"} gap={5} mt={5}>
-                            <Box>
-                                
-                                <Button width={'120px'} colorScheme="pink"> <StarIcon mr={3} /> {element.likes_count} likes</Button>
-                            </Box>
-                            <Box>
-                                
-                                <Button width={'120px'} ml={2} colorScheme="green"><ChatIcon mr={3} />{thread?.replies_count} replies</Button>
-                            </Box>
                         </Box>
                     </Box>
                 </Card>
@@ -90,7 +80,7 @@ export function Detail() {
                             <Avatar src={reply.user?.picture} mr={3}/>
                             <Text fontWeight={"bold"}>{reply.user?.fullname}</Text>
                             <Text ml={2} fontWeight={"light"}>@{reply.user?.username} <Icon color={"blue.300"} as={AiFillCheckCircle} /></Text>
-                            <Text ml={2}>{reply.posted_at}</Text>
+                            <Text ml={2}>{moment(reply.posted_at).startOf('minute').fromNow()}</Text>
                         </Box>    
                         
                         <Box mt={5}>

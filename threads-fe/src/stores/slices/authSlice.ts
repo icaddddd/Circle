@@ -8,6 +8,7 @@ const initialAuthState : IUser  = {
     username: "",
     email: "",
     picture: "",
+    description: ""
 }
 
 export const authSlice = createSlice({
@@ -25,7 +26,8 @@ export const authSlice = createSlice({
                 fullname: payload.user.fullname,
                 username: payload.user.username,
                 email: payload.user.email,
-                picture: payload.user.picture
+                picture: payload.user.picture,
+                description: payload.user.description
             }
             return user 
         },
@@ -41,7 +43,8 @@ export const authSlice = createSlice({
                 fullname: payload.fullname,
                 username: payload.username,
                 email: payload.email,
-                picture: payload.picture
+                picture: payload.picture,
+                description: payload.description
             }
             return user
         },

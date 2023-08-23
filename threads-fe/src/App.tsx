@@ -20,12 +20,11 @@ function App(){
             setAuthToken(localStorage.token)
             
             const response = await API.get("/check")
-            dispatch(AUTH_CHECK(response.data))
-            console.log("ini auth check", response.data)
+            dispatch(AUTH_CHECK(response.data.user))
+            console.log("test", response.data)
             setIsLoading(false)
         } catch (error) {
             dispatch(AUTH_ERROR())
-            localStorage.removeItem('token')
             setIsLoading(false)
             navigate("/")
             console.log("error auth check")

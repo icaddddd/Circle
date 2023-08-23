@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 
 export function useReply() {
     const [replies, setReplies] = useState<IThreadCard[]>()
-    const [thread, setThread] = useState<IThreadCard>();
+    const [thread] = useState<IThreadCard>();
 
     const {id} = useParams()
 
@@ -14,6 +14,15 @@ export function useReply() {
         content: "",
         thread_id: +(id as string)
     })
+    async function getReplies() {
+        try {
+            const response = await API.get(`replies?thread_id=${id}`)
+            setReplies(response.data)
+            console.log("ini reply id")
+        } catch (error) {
+            console.log("gagal mengambil data reply id :", error)
+        }
+    }
 
     async function handlePostReply(event: FormEvent<HTMLFormElement>) {
         try {
@@ -35,15 +44,6 @@ export function useReply() {
         })
     }
 
-    async function getReplies() {
-        try {
-            const response = await API.get(`replies?thread_id=${id}`)
-            setReplies(response.data)
-            console.log("ini reply id")
-        } catch (error) {
-            console.log("gagal mengambil data reply id :", error)
-        }
-    }
 
     useEffect(() => {
         getReplies()

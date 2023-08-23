@@ -7,27 +7,53 @@ class ThreadServices{
         private readonly threadRepository: Repository<Thread> = AppDataSource.getRepository(Thread);
         static find: any;
 
-    async find(req: Request, res: Response): Promise<Response> {
+    async find(reqQuery?: any, loginSession?: any): Promise<any> {
         try {
+            const limit = parseInt(reqQuery.limit ?? 0)
             const threads = await this.threadRepository.find({
-                relations: ["user"]
-            })
-            return res.status(200).json(threads)
+                relations: ["user", "likes.user", "replies"],
+                order: {id: "DESC"},
+                take: limit,
+            }); 
+            return threads.map((element) => ({
+                id: element.id,
+                content: element.content,
+                image: element.image,
+                posted_at: element.posted_at,
+                user: element.user,
+                replies_count: element.replies.length,
+                likes_count: element.likes.length,
+                is_liked: element.likes.some(
+                    (like: any) => like.user.id === loginSession.user.id
+                )
+            }))
         } catch (err) {
-            return res.status(500).json({error: "error while getting threads"})
+            throw new Error(err.message)
         }
         
     }
 
-    async findOne(req: Request, res: Response){
-        const id = parseInt(req.params.id)
-        const thread = await this.threadRepository.findOne({
-            where: {
-                id: id,
-            },
-            relations: ["user"]
-        })
-        return res.status(200).json(thread)
+    async findOne(id: number, loginSession?: any): Promise<any> {
+        try {
+            const thread = await this.threadRepository.findOne({
+                where: {id},
+                relations: ["user", "replies", "likes.user"]
+            })
+            return {
+                id: thread.id,
+                content: thread.content,
+                image: thread.image,
+                posted_at: thread.posted_at,
+                user: thread.user,
+                replies_count: thread.replies.length,
+                likes_count: thread.likes.length,
+                is_liked: thread.likes.some(
+                    (like: any) => like.user.id === loginSession.user.id
+                )
+            }
+        } catch (error) {
+            throw new Error(error.message)
+        }
     }
 
     async create(req: Request, res: Response): Promise<Response>{

@@ -35,7 +35,7 @@ class LikesService {
 
             return {
                 message: "you liked this thread!",
-                like
+                like: like
             }
         } catch (error) {
             throw new Error (error.message)

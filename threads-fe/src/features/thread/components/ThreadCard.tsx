@@ -7,6 +7,7 @@ import { Link } from "react-router-dom"
 import { useState } from "react"
 import { IThreadCard } from "@/interfaces/thread"
 import { useLike } from "@/hooks/useLike"
+import moment from "moment"
 
 
 export function ThreadCard(props: IThreadCard) {
@@ -25,7 +26,8 @@ export function ThreadCard(props: IThreadCard) {
                             <Avatar src={props.user?.picture} mr={3}/>
                             <Text fontWeight={"bold"}>{props.user?.fullname}</Text>
                             <Text ml={2} fontWeight={"light"}>@{props.user?.username} <Icon color={"blue.300"} as={AiFillCheckCircle} /></Text>
-                            <Text ml={2}>{props.posted_at}</Text>
+                            <Text ml={2}>{moment(props.posted_at).startOf("minute").fromNow()}</Text>
+                            
                         </Box>    
                         
                         <Box mt={5}>
@@ -43,7 +45,7 @@ export function ThreadCard(props: IThreadCard) {
                             <Box display={'flex'} alignItems={"center"}>
                                 <ChatIcon fontSize={20} mr={3}/>
                                 <Text>{props.replies_count} Replies</Text>
-                            </Box>
+                            </Box>  
                             </Link>
                         </Box>
                     </Box>

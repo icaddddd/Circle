@@ -13,7 +13,7 @@ class AuthService {
     async register (req: Request, res: Response): Promise<Response> {
         try{
 
-        const {fullname, username, email, password} = req.body
+        const {fullname, username, email, password, picture, description} = req.body
         const {error, value} = createThreadsSchema.validate(req.body)
 
         if (error) {
@@ -66,7 +66,7 @@ class AuthService {
                 where: {
                     email: value.email,
                 },
-                select:["id", "email", "password", "fullname", "username", "picture"]
+                select:["id", "email", "password", "fullname", "username", "picture", "description"]
             })
 
         if (!checkEmail){
@@ -86,10 +86,11 @@ class AuthService {
             password: checkEmail.password,
             fullname: checkEmail.fullname,
             username: checkEmail.username,
-            picture: checkEmail.picture
+            picture: checkEmail.picture,
+            description: checkEmail.description
         }
         const token = jwt.sign({ user }, JWT_SECRET_KEY, {
-            expiresIn: "1h"
+            expiresIn: "2h"
         })
         return res.status(200).json({
             message: "login sukses",
@@ -111,7 +112,7 @@ class AuthService {
                 where: {
                     id: loginSession.user.id
                 },
-                select: ["id", "email", "username", "fullname", "password"]
+                select: ["id", "email", "username", "fullname", "password", "picture", "description"]
             })
             return res.status(200).json({
                 user,

@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
 export function useThreads(){
-    const threads = useSelector((state: RootState) => state.thread)
+    const threads = useSelector((state: RootState) => state.thread.threads)
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [dataContent, setContent] = useState("")
@@ -19,7 +19,6 @@ export function useThreads(){
     }
 
     async function handlePost(event: FormEvent<HTMLFormElement>) {
-      event.preventDefault()
   
       const formData = new FormData()
       formData.append("content", dataContent)
@@ -29,6 +28,7 @@ export function useThreads(){
       }
 
       try {
+        event.preventDefault()
         const response = await API.post("/thread", formData, { 
           headers: {
             Authorization: `Bearer ${localStorage.token}`
