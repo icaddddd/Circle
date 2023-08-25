@@ -56,27 +56,27 @@ class ThreadServices{
         }
     }
 
-    async create(req: Request, res: Response): Promise<Response>{
-        const {content, image} = req.body
-        const loginSession = res.locals.loginSession.user
-        console.log("login session", loginSession)
-        try {
-            const thread = this.threadRepository.create({
+    // async create(req: Request, res: Response): Promise<Response>{
+    //     const {content, image} = req.body
+    //     const loginSession = res.locals.loginSession.user
+    //     console.log("login session", loginSession)
+    //     try {
+    //         const thread = this.threadRepository.create({
             
-                content: content,
-                image: res.locals.filename,
-                user: loginSession
+    //             content: content,
+    //             image: res.locals.filename,
+    //             user: loginSession
             
-            })
-            console.log("ini thread", thread)
+    //         })
+    //         console.log("ini thread", thread)
         
-            const createThread = await this.threadRepository.save(thread)
+    //         const createThread = await this.threadRepository.save(thread)
 
-            return res.status(200).json(createThread)
-        } catch (err) {
-            return res.status(500).json({error: err})
-        }
-    }
+    //         return res.status(200).json(createThread)
+    //     } catch (err) {
+    //         return res.status(500).json({error: err})
+    //     }
+    // }
 
     // async delete(req: Request, res:Response){
     //     const id = parseInt(req.params.id)
