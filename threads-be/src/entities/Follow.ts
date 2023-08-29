@@ -1,20 +1,20 @@
-import { Entity, ManyToOne, PrimaryColumn } from "typeorm";
+import { Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "./User";
 
 @Entity({name: "follows"})
 export class Follow{
-    @PrimaryColumn()
+    @PrimaryGeneratedColumn()
     id: number
 
-    @ManyToOne(() => User, (user) => user.followers,{
+    @ManyToOne(() => User, (user) => user.followings,{
         onDelete: "CASCADE",
         onUpdate: "CASCADE"
     })
-    follower: number
+    follower: User
 
-    @ManyToOne(() => User, (user) => user.followings, {
+    @ManyToOne(() => User, (user) => user.followers, {
         onDelete: "CASCADE",
         onUpdate: "CASCADE"
     })
-    followed: number
+    followed: User
 }

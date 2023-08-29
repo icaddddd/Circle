@@ -1,7 +1,7 @@
 import { IThreadPost } from "@/interfaces/thread"
 import { API } from "@/lib/api"
 import { AUTH_LOGOUT, GET_THREADS } from "@/stores/rootReducer"
-import { RootState } from "@/stores/slices/rootState"
+import { RootState } from "@/stores/types/rootState"
 import { ChangeEvent, FormEvent, useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
@@ -29,7 +29,6 @@ export function useThreads(){
       const response = await API.post("/thread", formData)
       console.log("thread added successfully", response)
       getThreads()
-      
     }
 
   useEffect(() => {

@@ -16,11 +16,9 @@ app.use(cors())
 
 AppDataSource.initialize().then(async() => {
         const port = 5000
-
+        dotenv.config()
         app.use(express.json())
         app.use("/api/v1", routes)
-
-        // ThreadQueue
 
         app.get("/", (req: Request, res: Response) => {
             res.send("Hello World!")

@@ -16,14 +16,6 @@ class ThreadWorker {
                         const payload = JSON.parse(message.content.toString())
 
                         console.log("message diterima : ", payload)
-
-                        console.log("env var : ",process.env.CLOUD_NAME);
-                        
-                            // cloudinary.config({
-                            //     cloud_name: "dvjeeregs",
-                            //     api_key: "824371712787679",
-                            //     api_secret: "emhxriNR_S_4mTF64aK1kCFClik"
-                            // })
                         
 
                         const cloudinaryResponse = await cloudinary.uploader.upload(
@@ -31,8 +23,8 @@ class ThreadWorker {
                         )
 
                         const thread = AppDataSource.getRepository(Thread).create({
-                            content: payload.content ? payload.content: "",
-                            image: cloudinaryResponse.secure_url ? cloudinaryResponse.secure_url: "",
+                            content: payload.content,
+                            image: cloudinaryResponse.secure_url,
                             user: {id: payload.user_id}
                         })
 

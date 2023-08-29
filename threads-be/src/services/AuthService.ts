@@ -2,7 +2,7 @@ import { Repository } from "typeorm";
 import { User } from "../entities/User";
 import { AppDataSource } from "../data-source";
 import { Request, Response } from "express";
-import { createThreadsSchema, loginThreadSchema } from "../utils/validatros/thread";
+import { loginThreadSchema,registerThreadSchema } from "../utils/validatros/thread";
 import * as bcrypt from "bcrypt"
 import * as jwt from "jsonwebtoken"
 
@@ -13,8 +13,8 @@ class AuthService {
     async register (req: Request, res: Response): Promise<Response> {
         try{
 
-        const {fullname, username, email, password, picture, description} = req.body
-        const {error, value} = createThreadsSchema.validate(req.body)
+        const {fullname, username, email, password} = req.body
+        const {error, value} = registerThreadSchema.validate(req.body)
 
         if (error) {
             return res.status(500).json({
@@ -66,7 +66,8 @@ class AuthService {
                 where: {
                     email: value.email,
                 },
-                select:["id", "email", "password", "fullname", "username", "picture", "description"]
+                select:["id", "email", "password", "fullname", "username", "picture", "description"],
+                relations: ["followings", "followers"]
             })
 
         if (!checkEmail){
@@ -84,13 +85,15 @@ class AuthService {
             id: checkEmail.id,
             email: checkEmail.email,
             password: checkEmail.password,
-            fullname: checkEmail.fullname,
+            full_name: checkEmail.fullname,
             username: checkEmail.username,
             picture: checkEmail.picture,
-            description: checkEmail.description
+            description: checkEmail.description,
+            followers_count: checkEmail.followers.length,
+            followings_count: checkEmail.followings.length
         }
         const token = jwt.sign({ user }, JWT_SECRET_KEY, {
-            expiresIn: "2h"
+            expiresIn: "1d"
         })
         return res.status(200).json({
             message: "login sukses",
@@ -109,14 +112,22 @@ class AuthService {
             console.log("loginsession", loginSession)
 
             const user = await this.authRepository.findOne({
-                where: {
-                    id: loginSession.user.id
-                },
-                select: ["id", "email", "username", "fullname", "password", "picture", "description"]
+                where: {id: loginSession.user.id},
+                select: ["id", "email", "username", "fullname", "password", "picture", "description"],
+                relations: ["followers", "followings"]
             })
             return res.status(200).json({
-                user,
-                message: "token is valid :)"
+                message: "token is valid",
+                user: {
+                    id: user.id,
+                    full_name: user.fullname,
+                    username: user.username,
+                    email: user.email,
+                    picture: user.picture,
+                    description: user.description,
+                    followers_count: user.followers.length,
+                    followings_count: user.followings.length
+                }
             })
         } catch (error) {
             return res.status(500).json({

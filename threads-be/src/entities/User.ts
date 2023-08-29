@@ -5,7 +5,7 @@ import { Reply } from "./Reply";
 import { Likes } from "./Likes";
 
 @Entity({name:"users"})
-export class User {
+export class  User {
 
   @PrimaryGeneratedColumn()
   id:number;
@@ -40,17 +40,17 @@ export class User {
   })
   likes:Likes[];
 
-  @OneToMany(() => Follow, (follow) => follow.follower, {
-    onDelete: "CASCADE",
-    onUpdate: "CASCADE"
-  })
-  followers: Follow[]
-
   @OneToMany(() => Follow, (follow) => follow.followed, {
     onDelete: "CASCADE",
     onUpdate: "CASCADE"
   })
   followings: Follow[]
+
+  @OneToMany(() => Follow, (follow) => follow.follower, {
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE"
+  })
+  followers: Follow[]
 
   @OneToMany(() => Reply, (reply) => reply.user, {
     onDelete: "CASCADE",

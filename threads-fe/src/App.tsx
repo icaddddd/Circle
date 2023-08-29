@@ -3,10 +3,16 @@ import Home from "./pages/Home";
 import DetailPage from "./pages/DetailPages";
 import SignupCard from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
-import { useEffect, useState } from "react";
+import { CSSProperties, useEffect, useState } from "react";
 import { API, setAuthToken } from "./lib/api";
 import { useDispatch } from "react-redux";
 import { AUTH_CHECK, AUTH_ERROR } from "./stores/rootReducer";
+import { PropagateLoader } from "react-spinners";
+import Follows from "./pages/Follow";
+
+const override: CSSProperties = {
+    display: "flex", justifyContent: "center", alignItems: "center", height: "100vh"
+}
 
 
 function App(){
@@ -21,7 +27,7 @@ function App(){
             
             const response = await API.get("/check")
             dispatch(AUTH_CHECK(response.data.user))
-            console.log("test", response.data)
+            // console.log("test", response.data)
             setIsLoading(false)
         } catch (error) {
             dispatch(AUTH_ERROR())
@@ -39,17 +45,17 @@ function App(){
             navigate("/")
         }
     },[])
-    // })
 
     return(
     <>
-    {isLoading ? null : 
+    {isLoading ? <PropagateLoader color="green" cssOverride={override} /> : 
        
             <Routes>
                 <Route path="/home" element={<Home/>} />
                 <Route path="/detail/:id" element={<DetailPage/>} />
                 <Route path="/register" element={<SignupCard/>} />
                 <Route path="/" element={<LoginPage/>} />
+                <Route path="/follows" element={<Follows/>} />
             </Routes>
         
     

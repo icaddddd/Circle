@@ -7,6 +7,7 @@ import authenticate from "../middlewares/auth"
 import LikesController from "../controllers/LikesController"
 import RepliesController from "../controllers/RepliesController"
 import ThreadQueue from "../queues/ThreadQueue"
+import FollowController from "../controllers/FollowController"
 
 
 
@@ -27,6 +28,13 @@ router.get("/thread/:id", authenticate, controllersThreads.findOne)
 router.post("/thread", authenticate, upload('image'), ThreadQueue.create)
 // router.delete("/thread/delete/:id", controllersThreads.delete)
 // router.patch("/thread/update/:id", controllersThreads.update)
+
+router.get("/users", authenticate, FollowController.findRandom)
+
+
+router.get("/follows", authenticate, FollowController.find)
+router.post("/follow", authenticate, FollowController.create)
+router.delete("/follow/:followed_user_id", authenticate, FollowController.delete)
 
 router.post("/like", authenticate, LikesController.create)
 router.delete("/like/:thread_id", authenticate, LikesController.delete)

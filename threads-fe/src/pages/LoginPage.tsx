@@ -19,7 +19,7 @@ import {
 import { ChangeEvent, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import {RootState} from "@/stores/slices/rootState"
+import {RootState} from "@/stores/types/rootState"
 import { AUTH_LOGIN } from '@/stores/rootReducer'
 import { useDispatch } from 'react-redux'
 

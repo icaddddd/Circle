@@ -5,7 +5,9 @@ export interface IUser {
     username: string,
     password?: string,
     email: string,
-    description: string
+    description: string,
+    followers_count: number,
+    followings_count: number
 }
 
 export interface IUserRegister {

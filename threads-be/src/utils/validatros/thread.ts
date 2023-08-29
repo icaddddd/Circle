@@ -10,3 +10,10 @@ export const loginThreadSchema = Joi.object({
     password: Joi.string().required(),
 })
 
+export const registerThreadSchema = Joi.object({
+    fullname: Joi.string().required(),
+    username: Joi.string().required(),
+    email: Joi.string().email().required(),
+    password: Joi.string().required(),
+})
+

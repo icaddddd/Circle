@@ -8,7 +8,9 @@ const initialAuthState : IUser  = {
     username: "",
     email: "",
     picture: "",
-    description: ""
+    description: "",
+    followers_count: 0,
+    followings_count: 0
 }
 
 export const authSlice = createSlice({
@@ -23,28 +25,32 @@ export const authSlice = createSlice({
 
             const user:IUser = {
                 id: payload.user.id,
-                fullname: payload.user.fullname,
+                fullname: payload.user.full_name,
                 username: payload.user.username,
                 email: payload.user.email,
                 picture: payload.user.picture,
-                description: payload.user.description
+                description: payload.user.description,
+                followers_count: payload.user.followers_count,
+                followings_count: payload.user.followings_count
             }
             return user 
         },
 
         AUTH_CHECK: (_, action) => {
             const payload = action.payload
-            console.log("redux auth check:", payload)
+            // console.log("redux auth check:", payload)
             // localStorage.setItem("token", payload.token)
             // setAuthToken(payload.token)
 
             const user:IUser = {
                 id: payload.id,
-                fullname: payload.fullname,
+                fullname: payload.full_name,
                 username: payload.username,
                 email: payload.email,
                 picture: payload.picture,
-                description: payload.description
+                description: payload.description,
+                followers_count: payload.followers_count,
+                followings_count: payload.followings_count
             }
             return user
         },

@@ -26,10 +26,12 @@ export default function Navbar() {
               <Icon as={AiOutlineSearch} mr={3}></Icon>
               <Text fontSize={20} my={3}>Search</Text>
             </Box>
-            <Box display={'flex'} alignItems={"center"}>
-              <Icon as={RiUserFollowFill} mr={3}></Icon>
-              <Text fontSize={20} my={3}>Follows</Text>
-            </Box>
+            <Link to={"/Follows"}>
+              <Box display={'flex'} alignItems={"center"}>
+                <Icon as={RiUserFollowFill} mr={3}></Icon>
+                <Text fontSize={20} my={3}>Follows</Text>
+              </Box>
+              </Link>
             <Box display={'flex'} alignItems={"center"}>
               <Icon as={CgProfile} mr={3}></Icon>
               <Text fontSize={20} my={3}>Profile</Text>

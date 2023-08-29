@@ -1,6 +1,6 @@
 import { API } from "@/lib/api";
 import { SET_THREAD_LIKE } from "@/stores/rootReducer";
-import { RootState } from "@/stores/slices/rootState";
+import { RootState } from "@/stores/types/rootState";
 import { useDispatch, useSelector } from "react-redux";
 
 export function useLike() {
