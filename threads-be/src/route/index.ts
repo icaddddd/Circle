@@ -1,17 +1,15 @@
-import * as express from "express"
-import { Request, Response } from "express"
-import controllersThreads from "../controllers/ThreadController"
-import AuthController from "../controllers/AuthController"
-import { upload } from "../middlewares/uploadFIle"
-import authenticate from "../middlewares/auth"
-import LikesController from "../controllers/LikesController"
-import RepliesController from "../controllers/RepliesController"
-import ThreadQueue from "../queues/ThreadQueue"
-import FollowController from "../controllers/FollowController"
+import * as express from "express";
+import { Request, Response } from "express";
+import controllersThreads from "../controllers/ThreadController";
+import AuthController from "../controllers/AuthController";
+import { upload } from "../middlewares/uploadFIle";
+import authenticate from "../middlewares/auth";
+import LikesController from "../controllers/LikesController";
+import RepliesController from "../controllers/RepliesController";
+import ThreadQueue from "../queues/ThreadQueue";
+import FollowController from "../controllers/FollowController";
 
-
-
-const router = express.Router()
+const router = express.Router();
 
 // router.get("/", (req: Request, res: Response) => {
 //     res.send("Hello from v1")
@@ -23,27 +21,30 @@ const router = express.Router()
 //     })
 // })
 
-router.get("/thread", authenticate, controllersThreads.find)
-router.get("/thread/:id", authenticate, controllersThreads.findOne)
-router.post("/thread", authenticate, upload('image'), ThreadQueue.create)
+router.get("/thread", authenticate, controllersThreads.find);
+router.get("/thread/:id", authenticate, controllersThreads.findOne);
+router.post("/thread", authenticate, upload("image"), ThreadQueue.create);
 // router.delete("/thread/delete/:id", controllersThreads.delete)
 // router.patch("/thread/update/:id", controllersThreads.update)
 
-router.get("/users", authenticate, FollowController.findRandom)
+router.get("/users", authenticate, FollowController.findRandom);
 
+router.get("/follows", authenticate, FollowController.find);
+router.post("/follow", authenticate, FollowController.create);
+router.delete(
+  "/follow/:followed_user_id",
+  authenticate,
+  FollowController.delete
+);
 
-router.get("/follows", authenticate, FollowController.find)
-router.post("/follow", authenticate, FollowController.create)
-router.delete("/follow/:followed_user_id", authenticate, FollowController.delete)
+router.post("/like", authenticate, LikesController.create);
+router.delete("/like/:thread_id", authenticate, LikesController.delete);
 
-router.post("/like", authenticate, LikesController.create)
-router.delete("/like/:thread_id", authenticate, LikesController.delete)
+router.get("/replies", authenticate, RepliesController.find);
+router.post("/reply", authenticate, RepliesController.create);
 
-router.get("/replies", authenticate, RepliesController.find)
-router.post("/reply", authenticate, RepliesController.create)
+router.post("/auth/register", AuthController.register);
+router.post("/auth/login", AuthController.login);
+router.get("/check", authenticate, AuthController.checking);
 
-router.post("/auth/register", AuthController.register)
-router.post("/auth/login", AuthController.login)
-router.get("/check", authenticate, AuthController.checking)
-
-export default router
+export default router;
