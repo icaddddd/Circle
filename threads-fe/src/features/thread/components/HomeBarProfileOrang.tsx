@@ -1,0 +1,101 @@
+// import {
+//   Box,
+//   Button,
+//   Card,
+//   FormControl,
+//   FormLabel,
+//   Icon,
+//   Input,
+// } from "@chakra-ui/react";
+// import { ThreadCard } from ".";
+// import { BsImages } from "react-icons/bs";
+// import { useThreads } from "@/hooks/useThreads";
+// import { useSelector } from "react-redux";
+// import { RootState } from "@/stores/types/rootState";
+// import { API } from "@/lib/api";
+// import { IThreadCard } from "@/interfaces/thread";
+// import { useEffect, useState } from "react";
+// import { useParams } from "react-router-dom";
+
+// export default function HomeBarProfile() {
+//   const { handlePost, handleChange, threads } = useThreads();
+//   // const auth = useSelector((state: RootState) => state.auth);
+//   const [data, setData] = useState<IThreadCard>();
+//   const id = useParams();
+
+//   async function fetchData() {
+//     const response = await API.get(`/userprofile/${id.id}`);
+//     console.log("threadorang", response);
+//     setData(response.data);
+//   }
+
+//   useEffect(() => {
+//     fetchData();
+//   }, []);
+
+//   return (
+//     <>
+//       <Card margin={2} padding={5}>
+//         <FormLabel fontSize={30} fontWeight={"bold"}>
+//           Home
+//         </FormLabel>
+//         <form onSubmit={handlePost} encType="multipart/form-data">
+//           <FormControl>
+//             <Box display={"flex"} gap={3}>
+//               <Input
+//                 name="content"
+//                 onChange={handleChange}
+//                 type="text"
+//                 placeholder="what's on ur mind?"
+//               />
+//               <Box mt={3}>
+//                 <Input
+//                   name="image"
+//                   onChange={handleChange}
+//                   mt={2}
+//                   type="file"
+//                   border={"none"}
+//                   display={"none"}
+//                   id="input-image"
+//                 />
+//                 <label htmlFor="input-image">
+//                   <Icon as={BsImages} fontSize={20} cursor={"pointer"} />
+//                 </label>
+//               </Box>
+//             </Box>
+//             <Button
+//               type="submit"
+//               borderRadius={20}
+//               width={"20%"}
+//               value={"Post"}
+//               colorScheme="green"
+//               color={"white"}
+//               px={15}
+//               float={"right"}
+//               mt={2}
+//             >
+//               Submit
+//             </Button>
+//           </FormControl>
+//         </form>
+//       </Card>
+//       {threads.map((item) => {
+//         if (item.user.id === data?.user.id) {
+//           return (
+//             <ThreadCard
+//               key={item.id}
+//               content={item.content}
+//               image={item.image}
+//               user={item.user}
+//               posted_at={item.posted_at}
+//               likes_count={item.likes_count}
+//               replies_count={item.replies_count}
+//               is_liked={item.is_liked}
+//               id={item.id}
+//             />
+//           );
+//         }
+//       })}
+//     </>
+//   );
+// }

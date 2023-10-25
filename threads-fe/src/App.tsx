@@ -9,6 +9,9 @@ import { useDispatch } from "react-redux";
 import { AUTH_CHECK, AUTH_ERROR } from "./stores/rootReducer";
 import { PropagateLoader } from "react-spinners";
 import Follows from "./pages/Follow";
+import Profile from "./pages/EditProfile";
+import UserProfile from "./pages/UserProfile";
+import UserProfileOrang from "./pages/UserProfileOrang";
 
 const override: CSSProperties = {
   display: "flex",
@@ -47,6 +50,8 @@ function App() {
     }
   }, []);
 
+  
+
   return (
     <>
       {isLoading ? (
@@ -58,6 +63,9 @@ function App() {
           <Route path="/register" element={<SignupCard />} />
           <Route path="/" element={<LoginPage />} />
           <Route path="/follows" element={<Follows />} />
+          <Route path="/editprofile/:id" element={<Profile />} />
+          <Route path="/userprofile/:id" element={<UserProfile />} />
+          <Route path="/userprofileorang/:id" element={<UserProfileOrang />} />
         </Routes>
       )}
     </>

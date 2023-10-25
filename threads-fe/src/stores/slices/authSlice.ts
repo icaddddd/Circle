@@ -25,7 +25,7 @@ export const authSlice = createSlice({
 
             const user:IUser = {
                 id: payload.user.id,
-                fullname: payload.user.full_name,
+                fullname: payload.user.fullname,
                 username: payload.user.username,
                 email: payload.user.email,
                 picture: payload.user.picture,
@@ -44,7 +44,7 @@ export const authSlice = createSlice({
 
             const user:IUser = {
                 id: payload.id,
-                fullname: payload.full_name,
+                fullname: payload.fullname,
                 username: payload.username,
                 email: payload.email,
                 picture: payload.picture,

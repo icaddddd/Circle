@@ -28,9 +28,9 @@ export function useThreads() {
 
     const response = await API.post("/thread", formData);
     console.log("thread added successfully", response);
-    getThreads();
+    getThreads()
   }
-
+  
   useEffect(() => {
     getThreads();
   }, []);

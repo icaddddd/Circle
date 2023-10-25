@@ -8,6 +8,8 @@ import LikesController from "../controllers/LikesController";
 import RepliesController from "../controllers/RepliesController";
 import ThreadQueue from "../queues/ThreadQueue";
 import FollowController from "../controllers/FollowController";
+import ProfileUserController from "../controllers/ProfileUserController";
+import ThreadOrang from "../services/ThreadOrang";
 
 const router = express.Router();
 
@@ -46,5 +48,11 @@ router.post("/reply", authenticate, RepliesController.create);
 router.post("/auth/register", AuthController.register);
 router.post("/auth/login", AuthController.login);
 router.get("/check", authenticate, AuthController.checking);
+
+router.patch("/user/update/:id", authenticate, upload("picture"), ProfileUserController.patch);
+router.get("/user/:id", authenticate, ProfileUserController.findOne); 
+router.get("/userprofile/:id", authenticate, ProfileUserController.findAll);
+
+router.get("/threadorang/:id", authenticate, ThreadOrang.findOne);
 
 export default router;

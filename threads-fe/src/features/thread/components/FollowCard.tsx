@@ -44,7 +44,7 @@ export function FollowCard(props: IFollow) {
         <Box display={"flex"} width={"100%"}>
           <Box display={"flex"} flexDirection={"column"} gap={2} flex={2}>
             <Box display={"flex"}>
-              <Text>{props.full_name}</Text>
+              <Text>{props.fullname}</Text>
             </Box>
             <Text color="brand.grey">@{props.username}</Text>
             <Text>{props.description}</Text>

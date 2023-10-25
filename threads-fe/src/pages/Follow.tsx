@@ -2,6 +2,7 @@
 import Navbar from "@/features/sidebarleft/sidebarleft";
 import SideBarRight from "@/features/sidebarright/sidebarright";
 import { FollowCard } from "@/features/thread/components/FollowCard";
+import { IFollow } from "@/interfaces/follow";
 import { API } from "@/lib/api";
 import { GET_FOLLOWS, SET_FOLLOW_STATE } from "@/stores/rootReducer";
 import { RootState } from "@/stores/types/rootState";
@@ -16,9 +17,10 @@ export default function Follows() {
   );
   const follows = useSelector((state: RootState) => state.follow.follows);
 
+  
   async function getFollowData() {
     const response = await API.get(`/follows?type=${followState}`);
-    // console.log("ini response" , response)
+    console.log("ini response" , response)
     dispatch(GET_FOLLOWS(response.data));
   }
   
@@ -52,7 +54,7 @@ export default function Follows() {
                   key={index}
                   id={follow.id}
                   user_id={follow.user_id}
-                  full_name={follow.full_name}
+                  fullname={follow.fullname}
                   username={follow.username}
                   email={follow.email}
                   picture={follow.picture}
@@ -67,7 +69,7 @@ export default function Follows() {
                   key={index}
                   id={follow.id}
                   user_id={follow.user_id}
-                  full_name={follow.full_name}
+                  fullname={follow.fullname}
                   username={follow.username}
                   email={follow.email}
                   picture={follow.picture}

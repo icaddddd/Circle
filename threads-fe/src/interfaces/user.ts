@@ -1,5 +1,6 @@
 export interface IUser {
     id: number,
+    user_id: number,
     picture: string,
     fullname: string,
     username: string,
@@ -7,7 +8,8 @@ export interface IUser {
     email: string,
     description: string,
     followers_count: number,
-    followings_count: number
+    followings_count: number,
+    is_followed: boolean
 }
 
 export interface IUserRegister {
