@@ -21,7 +21,7 @@ class FollowsService {
       //   await this.followRepository
       //     .createQueryBuilder("follows")
       //     .select("follows.followedId", "followedId")
-      //     .where("follows.followerId = :id", { id: id }) // Ganti 18 dengan ID sesi login
+      //     .where("follows.followerId = :id", { id: id }) // tolong perbaiki code nya untuk Ganti 18 dengan ID sesi login
       //     .getRawMany()
       // ).map((row) => row.followedId);
 
