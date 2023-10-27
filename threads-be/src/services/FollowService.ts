@@ -1,9 +1,10 @@
-import { Repository } from "typeorm";
+import { Not, Repository } from "typeorm";
 import { Follow } from "../entities/Follow";
 import { AppDataSource } from "../data-source";
 import { User } from "../entities/User";
 import { log } from "console";
 import { isDate } from "date-fns";
+import { Response } from "express";
 
 class FollowsService {
   private readonly followRepository: Repository<Follow> =
@@ -12,25 +13,27 @@ class FollowsService {
   private readonly userRepository: Repository<User> =
     AppDataSource.getRepository(User);
 
-  async findRandom(reqQuery?: any): Promise<any> {
+  async findRandom(reqQuery?: any, res?: Response): Promise<any> {
     try {
-      const id = reqQuery.id as number;
+      const loginSession = res.locals.loginSession.user.id;
+      console.log("loginSession", loginSession);
+
       const limit = parseInt(reqQuery.limit ?? 0);
-      const userIdsToExclude = [15,19]; // tolong perbaiki code nya untuk CARI DATA YANG UDAH DIFOLLOW
-      // const followedUserIds = (
-      //   await this.followRepository
-      //     .createQueryBuilder("follows")
-      //     .select("follows.followedId", "followedId")
-      //     .where("follows.followerId = :id", { id: id }) // tolong perbaiki code nya untuk Ganti 18 dengan ID sesi login
-      //     .getRawMany()
-      // ).map((row) => row.followedId);
+
+      const followedUserIds = (
+        await this.followRepository
+          .createQueryBuilder("follows")
+          .select("follows.followedId", "followedId")
+          .where("follows.follower = :id", { id: loginSession })
+          .getRawMany()
+      ).map((row) => row.followedId);
 
       const users = await this.userRepository
         .createQueryBuilder("users")
         .select()
-        .where("users.id != :id", { id: 18 }) // tolong perbaiki code nya untuk DAPETIN ID YANG LOGIN
+        .where("users.id != :id", { id: loginSession })
         .andWhere("users.id NOT IN (:...userIds)", {
-          userIds: userIdsToExclude,
+          userIds: followedUserIds,
         })
         .orderBy("RANDOM()")
         .take(limit)

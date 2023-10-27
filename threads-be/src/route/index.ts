@@ -25,7 +25,8 @@ const router = express.Router();
 
 router.get("/thread", authenticate, controllersThreads.find);
 router.get("/thread/:id", authenticate, controllersThreads.findOne);
-router.post("/thread", authenticate, upload("image"), ThreadQueue.create);
+// router.post("/thread", authenticate, upload("image"), ThreadQueue.create);
+router.post("/thread", authenticate, upload("image"), controllersThreads.create);
 // router.delete("/thread/delete/:id", controllersThreads.delete)
 // router.patch("/thread/update/:id", controllersThreads.update)
 

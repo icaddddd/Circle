@@ -5,7 +5,7 @@ import FollowService from "../services/FollowService";
 class FollowsController {
     async findRandom(req: Request, res: Response) {
         try {
-            const response = await FollowService.findRandom(req.query)
+            const response = await FollowService.findRandom(req.query, res)
     
             return res.status(200).json(response)
         } catch (error) {
