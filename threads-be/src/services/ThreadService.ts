@@ -87,33 +87,6 @@ class ThreadServices {
       return res.status(500).json({ error: err });
     }
   }
-
-  // async delete(req: Request, res:Response){
-  //     const id = parseInt(req.params.id)
-  //     const deleteThread = await this.threadRepository.delete(id)
-  //     return res.status(200).json(deleteThread)
-  // }
-
-  // async update(req:Request, res:Response){
-  //     const id = parseInt(req.params.id)
-  //     const thread = await this.threadRepository.findOne({
-  //         where : {
-  //             id
-  //         }
-  //     })
-
-  //     const data = req.body
-
-  //     if (data.content != ""){
-  //         thread.content = data.content
-  //     }
-  //     if (data.image != ""){
-  //         thread.image = data.image
-  //     }
-
-  //     const updatedThread = this.threadRepository.save(thread)
-  //     return res.status(200).json(updatedThread)
-  // }
 }
 
 export default new ThreadServices();
