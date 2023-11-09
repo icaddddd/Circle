@@ -1,10 +1,10 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
-import { User } from "./entities/User";
-import { Thread } from "./entities/Thread";
-import { Reply } from "./entities/Reply";
-import { Likes } from "./entities/Likes";
-import { Follow } from "./entities/Follow";
+// import { User } from "./entities/User";
+// import { Thread } from "./entities/Thread";
+// import { Reply } from "./entities/Reply";
+// import { Likes } from "./entities/Likes";
+// import { Follow } from "./entities/Follow";
 
 // export const AppDataSource = new DataSource({
 //     type: "postgres",
@@ -28,8 +28,8 @@ export const AppDataSource = new DataSource({
   database: "railway",
   synchronize: true,
   logging: false,
-  //   entities: ["src/entities/*.ts"],
-  entities: [User, Thread, Reply, Likes, Follow],
+  entities: ["src/entities/*.ts"],
+  // entities: [User, Thread, Reply, Likes, Follow],
   migrations: ["src/migrations/*.ts"],
   subscribers: [],
 });
