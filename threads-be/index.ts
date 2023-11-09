@@ -1,11 +1,11 @@
-import { AppDataSource } from "./data-source";
+import { AppDataSource } from "./src/data-source";
 import * as express from "express";
 import { Request, Response } from "express";
-import routes from "./route";
+import routes from "./src/route";
 import exp = require("constants");
-import ThreadQueue from "./queues/ThreadQueue";
+import ThreadQueue from "./src/queues/ThreadQueue";
 import * as dotenv from "dotenv";
-import ThreadWorker from "./workers/ThreadWorker";
+import ThreadWorker from "./src/workers/ThreadWorker";
 
 import cors = require("cors");
 const app = express();
