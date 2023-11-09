@@ -11,50 +11,75 @@ class FollowsService {
   private readonly userRepository: Repository<User> =
     AppDataSource.getRepository(User);
 
-  async findRandom(reqQuery?: any, res?: Response): Promise<any> {
+  // async findRandom(reqQuery?: any, res?: Response): Promise<any> {
+  //   try {
+  //     const loginSession = res.locals.loginSession.user.id;
+
+  //     const limit = parseInt(reqQuery.limit ?? 0);
+
+  //     const followedUserIds = (
+  //       await this.followRepository
+  //         .createQueryBuilder("follows")
+  //         .select("follows.followedId", "followedId")
+  //         .where("follows.follower = :id", { id: loginSession })
+  //         .getRawMany()
+  //     ).map((row) => row.followedId);
+
+  //     const users = await this.userRepository
+  //       .createQueryBuilder("users")
+  //       .select()
+  //       .where("users.id != :id", { id: loginSession })
+  //       .andWhere("users.id NOT IN (:...userIds)", {
+  //         userIds: followedUserIds,
+  //       })
+  //       .orderBy("RANDOM()")
+  //       .take(limit)
+  //       .getMany();
+
+  //     console.log("random", users);
+
+  //     const newUser = users?.map((follow) => ({
+  //       id: follow.id,
+  //       user_id: follow.id,
+  //       username: follow.username,
+  //       fullname: follow.fullname,
+  //       email: follow.email,
+  //       picture: follow.picture,
+  //       description: follow.description,
+  //       is_followed: false,
+  //     }));
+  //     console.log("random map", newUser);
+  //     return newUser;
+  //   } catch (error) {
+  //     throw new Error(error.message);
+  //   }
+  // }
+
+  async notFollowed(loginSession: any): Promise<any> {
     try {
-      const loginSession = res.locals.loginSession.user.id;
-      console.log("loginSession", loginSession);
-
-      const limit = parseInt(reqQuery.limit ?? 0);
-
-      const followedUserIds = (
-        await this.followRepository
-          .createQueryBuilder("follows")
-          .select("follows.followedId", "followedId")
-          .where("follows.follower = :id", { id: loginSession })
-          .getRawMany()
-      ).map((row) => row.followedId);
-
-      const users = await this.userRepository
-        .createQueryBuilder("users")
-        .select()
-        .where("users.id != :id", { id: loginSession })
-        .andWhere("users.id NOT IN (:...userIds)", {
-          userIds: followedUserIds,
-        })
-        .orderBy("RANDOM()")
-        .take(limit)
-        .getMany();
-
-      console.log("random", users);
-
-      const newUser = users?.map((follow) => ({
-        id: follow.id,
-        user_id: follow.id,
-        username: follow.username,
-        fullname: follow.fullname,
-        email: follow.email,
-        picture: follow.picture,
-        description: follow.description,
-        is_followed: false,
-      }));
-      console.log("random map", newUser);
-      return newUser;
+      const user = await this.userRepository.find({
+        take: 20,
+      });
+      const follows = await this.followRepository.find({
+        relations: ["followed"],
+        where: {
+          follower: {
+            id: loginSession.user.id,
+          },
+        },
+      });
+      const userFollowed = follows.map((follow) => follow.followed);
+      const getUser = user.filter((user) => user.id !== loginSession.user.id);
+      const notFollowed = getUser.filter((user) =>
+        userFollowed.every((item) => item.id !== user.id)
+      );
+      return notFollowed;
     } catch (error) {
       throw new Error(error.message);
     }
   }
+  
+  
 
   async find(
     loginSession: any,

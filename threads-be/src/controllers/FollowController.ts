@@ -3,15 +3,15 @@ import { Request, Response } from "express";
 import FollowService from "../services/FollowService";
 
 class FollowsController {
-    async findRandom(req: Request, res: Response) {
+    async notFollowed(req: Request, res: Response) {
         try {
-            const response = await FollowService.findRandom(req.query, res)
-    
-            return res.status(200).json(response)
+          const loginSession = res.locals.loginSession;
+          const response = await FollowService.notFollowed(loginSession);
+          return res.status(200).json(response);
         } catch (error) {
-            return res.status(500).json({error: error.message})
+          return res.status(500).json({ error: error.message });
         }
-    }
+      }
 
     async find(req: Request, res: Response) {
         try {
