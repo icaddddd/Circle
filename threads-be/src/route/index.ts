@@ -1,4 +1,4 @@
-import * as express from "express";
+import express = require("express");
 import { Request, Response } from "express";
 import controllersThreads from "../controllers/ThreadController";
 import AuthController from "../controllers/AuthController";

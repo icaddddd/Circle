@@ -1,6 +1,6 @@
 import { AppDataSource } from "../data-source";
 import { cloudinaryConfig } from "../libs/coudinary";
-import * as amqp from "amqplib"
+import amqp = require("amqplib");
 import ThreadWorker from "./ThreadWorker";
 
 class WorkerHub {

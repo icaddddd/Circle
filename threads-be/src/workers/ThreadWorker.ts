@@ -1,4 +1,4 @@
-import * as amqp from "amqplib";
+import amqp = require("amqplib");
 import { v2 as cloudinary } from "cloudinary";
 import { AppDataSource } from "../data-source";
 import { Thread } from "../entities/Thread";

@@ -6,8 +6,8 @@ import {
   loginThreadSchema,
   registerThreadSchema,
 } from "../utils/validatros/thread";
-import * as bcrypt from "bcrypt";
-import * as jwt from "jsonwebtoken";
+import bcrypt = require("bcrypt");
+import jwt = require("jsonwebtoken");
 
 class AuthService {
   private readonly authRepository: Repository<User> =

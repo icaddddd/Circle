@@ -1,4 +1,4 @@
-import * as Joi from "Joi"
+import Joi = require("joi");
 
 export const createThreadsSchema = Joi.object({
     content: Joi.string(),
