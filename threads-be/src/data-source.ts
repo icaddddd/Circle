@@ -16,10 +16,10 @@ import { DataSource } from "typeorm";
 // })
 export const AppDataSource = new DataSource({
   type: "postgres",
-  host: "containers-us-west-146.railway.app",
-  port: 6512,
+  host: "monorail.proxy.rlwy.net",
+  port: 22924,
   username: "postgres",
-  password: "MFe37gWz8lm5MMVhmq2B",
+  password: "eAec2BgbfF4A64AE5D*eGb*daGf4F3dF",
   database: "railway",
   synchronize: true,
   logging: false,
