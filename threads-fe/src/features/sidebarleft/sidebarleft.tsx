@@ -1,7 +1,7 @@
 import { useThreads } from "@/hooks/useThreads";
 import { RootState } from "@/stores/types/rootState";
 import { Icon } from "@chakra-ui/icons";
-import { Box, Button, Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { AiFillHome, AiOutlineSearch } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
@@ -28,12 +28,14 @@ export default function Navbar() {
               </Text>
             </Box>
           </Link>
-          <Box display={"flex"} alignItems={"center"}>
-            <Icon as={AiOutlineSearch} mr={3}></Icon>
-            <Text fontSize={20} my={3}>
-              Search
-            </Text>
-          </Box>
+          <Link to={"/search"}>
+            <Box display={"flex"} alignItems={"center"}>
+              <Icon as={AiOutlineSearch} mr={3}></Icon>
+              <Text fontSize={20} my={3}>
+                Search
+              </Text>
+            </Box>
+          </Link>
           <Link to={"/Follows"}>
             <Box display={"flex"} alignItems={"center"}>
               <Icon as={RiUserFollowFill} mr={3}></Icon>
@@ -50,9 +52,6 @@ export default function Navbar() {
               </Text>
             </Box>
           </Link>
-          <Button width={"200px"} colorScheme="green">
-            Create Post
-          </Button>
           <Box
             display={"flex"}
             alignItems={"center"}

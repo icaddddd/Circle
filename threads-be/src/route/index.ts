@@ -6,10 +6,10 @@ import { upload } from "../middlewares/uploadFIle";
 import authenticate from "../middlewares/auth";
 import LikesController from "../controllers/LikesController";
 import RepliesController from "../controllers/RepliesController";
-import ThreadQueue from "../queues/ThreadQueue";
 import FollowController from "../controllers/FollowController";
 import ProfileUserController from "../controllers/ProfileUserController";
 import ThreadOrang from "../services/ThreadOrang";
+import SearchController from "../controllers/SearchController";
 
 const router = express.Router();
 
@@ -55,5 +55,7 @@ router.get("/user/:id", authenticate, ProfileUserController.findOne);
 router.get("/userprofile/:id", authenticate, ProfileUserController.findAll);
 
 router.get("/threadorang/:id", authenticate, ThreadOrang.findOne);
+
+router.get("/search", authenticate, SearchController.findAll);
 
 export default router;

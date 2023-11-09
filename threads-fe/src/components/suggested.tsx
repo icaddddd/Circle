@@ -1,12 +1,11 @@
 import { useFollow } from "@/hooks/useFollow";
-import { IFollow } from "@/interfaces/follow";
 import { API } from "@/lib/api";
-import { GET_FOLLOWS, SET_FOLLOW } from "@/stores/rootReducer";
+import { SET_FOLLOW } from "@/stores/rootReducer";
 import { RootState } from "@/stores/types/rootState";
-import { Box, Button, Card, Text, Image } from "@chakra-ui/react";
-import { useSelector, useDispatch } from "react-redux";
+import { Box, Button, Card, Image, Text } from "@chakra-ui/react";
+import { useDispatch, useSelector } from "react-redux";
 
-export default function SuggestedFollow(props: IFollow) {
+export default function SuggestedFollow() {
   const dispatch = useDispatch();
   const auth = useSelector((state: RootState) => state.auth);
   const follows = useSelector((state: RootState) => state.follow.follows);

@@ -46,7 +46,7 @@ export default function SignupCard() {
       console.log("register success", response)
       navigate("/")
     } catch (err){
-      console.log(err)
+      console.log(err)  
     }
   }
 

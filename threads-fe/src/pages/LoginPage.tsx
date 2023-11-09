@@ -1,32 +1,29 @@
 'use client'
 
 import { IUserLogin } from '@/interfaces/user'
-import { API, setAuthToken } from '@/lib/api'
+import { API } from '@/lib/api'
+import { AUTH_LOGIN } from '@/stores/rootReducer'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 import {
-  Flex,
   Box,
-  FormControl,
-  Input,
-  Stack,
   Button,
+  Flex,
+  FormControl,
   Heading,
-  Text,
-  useColorModeValue,
+  Input,
   InputGroup,
   InputRightElement,
+  Stack,
+  Text,
+  useColorModeValue,
 } from '@chakra-ui/react'
 import { ChangeEvent, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
-import {RootState} from "@/stores/types/rootState"
-import { AUTH_LOGIN } from '@/stores/rootReducer'
 import { useDispatch } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
-  const auth = useSelector((state: RootState) => state.auth)
 
   const [form, setForm] = useState<IUserLogin>({
     email: "",

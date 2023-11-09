@@ -10,7 +10,9 @@ const initialAuthState : IUser  = {
     picture: "",
     description: "",
     followers_count: 0,
-    followings_count: 0
+    followings_count: 0,
+    user_id: 0,
+    is_followed: false
 }
 
 export const authSlice = createSlice({
@@ -31,7 +33,9 @@ export const authSlice = createSlice({
                 picture: payload.user.picture,
                 description: payload.user.description,
                 followers_count: payload.user.followers_count,
-                followings_count: payload.user.followings_count
+                followings_count: payload.user.followings_count,
+                user_id: 0,
+                is_followed: false
             }
             return user 
         },
@@ -50,7 +54,9 @@ export const authSlice = createSlice({
                 picture: payload.picture,
                 description: payload.description,
                 followers_count: payload.followers_count,
-                followings_count: payload.followings_count
+                followings_count: payload.followings_count,
+                user_id: 0,
+                is_followed: false
             }
             return user
         },

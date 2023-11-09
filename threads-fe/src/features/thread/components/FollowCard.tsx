@@ -17,11 +17,9 @@ export function FollowCard(props: IFollow) {
           followed_user_id: followedUserId,
         });
         dispatch(SET_FOLLOW({ id: id, isFollowed: isFollowed }));
-        
       } else {
         await API.delete(`/follow/${followedUserId}`);
         dispatch(SET_FOLLOW({ id: id, isFollowed: isFollowed }));
-        
       }
     } catch (err) {
       console.log(err);
@@ -29,8 +27,7 @@ export function FollowCard(props: IFollow) {
   }
 
   return (
-    <>
-      <Box display={"flex"} width="100%" padding={"20px 0px"}>
+    <Box display={"flex"} width="100%" padding={"20px 0px"}>
         <Image
           src={props.picture ?? "/user-placeholder.png"}
           width={"50px"}
@@ -60,6 +57,5 @@ export function FollowCard(props: IFollow) {
           </Box>
         </Box>
       </Box>
-    </>
   );
 }

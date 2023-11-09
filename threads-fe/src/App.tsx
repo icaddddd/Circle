@@ -12,6 +12,7 @@ import Follows from "./pages/Follow";
 import Profile from "./pages/EditProfile";
 import UserProfile from "./pages/UserProfile";
 import UserProfileOrang from "./pages/UserProfileOrang";
+import SearchPage from "./pages/SearchPage";
 
 const override: CSSProperties = {
   display: "flex",
@@ -66,6 +67,7 @@ function App() {
           <Route path="/editprofile/:id" element={<Profile />} />
           <Route path="/userprofile/:id" element={<UserProfile />} />
           <Route path="/userprofileorang/:id" element={<UserProfileOrang />} />
+          <Route path="/search" element={<SearchPage />} />
         </Routes>
       )}
     </>

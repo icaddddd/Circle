@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Card,
   CardBody,
   Heading,
@@ -8,25 +7,18 @@ import {
   Stack,
   Text,
   Image,
-  FormControl,
-  FormLabel,
-  Input,
 } from "@chakra-ui/react";
 import { AiFillCheckCircle } from "react-icons/ai";
-import { useSelector } from "react-redux";
-import { RootState } from "@/stores/types/rootState";
 import { useParams } from "react-router-dom";
 import { API } from "@/lib/api";
 import { useEffect, useState } from "react";
 import { IUser } from "@/interfaces/user";
-import { BsImages } from "react-icons/bs";
 import { ThreadCard } from ".";
 import { useThreads } from "@/hooks/useThreads";
 
 export default function ProfileTengah() {
-  // const auth = useSelector((state: RootState) => state.auth);
   const [data, setUserData] = useState<IUser>();
-  const { handlePost, handleChange, threads } = useThreads();
+  const { threads } = useThreads();
   const id = useParams();
 
   async function fetchData() {
@@ -70,10 +62,6 @@ export default function ProfileTengah() {
               @{data?.username}{" "}
             </Text>
             <Text>{data?.description}</Text>
-            {/* <Box display={"flex"} gap={5}>
-            <Text color={"grey"}>{data?.followings_count} followers</Text>
-            <Text color={"grey"}>{data?.followers_count} followings</Text>
-          </Box> */}
           </Stack>
         </CardBody>
       </Card>

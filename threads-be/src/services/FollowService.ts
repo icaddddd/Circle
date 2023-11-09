@@ -1,9 +1,7 @@
-import { Not, Repository } from "typeorm";
+import { Repository } from "typeorm";
 import { Follow } from "../entities/Follow";
 import { AppDataSource } from "../data-source";
 import { User } from "../entities/User";
-import { log } from "console";
-import { isDate } from "date-fns";
 import { Response } from "express";
 
 class FollowsService {

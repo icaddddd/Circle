@@ -5,13 +5,11 @@ import { Box } from "@chakra-ui/react";
 
 export function SideBarRight(){
     return(
-        <>
         <Box>
         <ProfileKanan />
         <SuggestedFollow />
         <PoweredBy />
         </Box>
-        </>
     )
 }
 

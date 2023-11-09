@@ -7,7 +7,7 @@ import ThreadQueue from "./queues/ThreadQueue";
 import * as dotenv from "dotenv";
 import ThreadWorker from "./workers/ThreadWorker";
 
-const cors = require("cors");
+import cors = require("cors");
 const app = express();
 
 app.use(cors());
