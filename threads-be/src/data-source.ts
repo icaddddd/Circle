@@ -23,7 +23,7 @@ export const AppDataSource = new DataSource({
   database: "railway",
   synchronize: true,
   logging: false,
-  entities: ["src/entities/*.js"],
-  migrations: ["src/migrations/*.js"],
+  entities: [__dirname + "src/entities/*.ts"],
+  migrations: ["src/migrations/*.ts"],
   subscribers: [],
 });
