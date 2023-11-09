@@ -18,6 +18,8 @@ class AuthService {
       const { fullname, username, email, password } = req.body;
       const { error, value } = registerThreadSchema.validate(req.body);
 
+    console.log(value)
+
       if (error) {
         return res.status(500).json({
           error: error.details[0].message,
