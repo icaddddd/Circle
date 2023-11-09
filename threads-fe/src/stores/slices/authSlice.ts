@@ -34,8 +34,8 @@ export const authSlice = createSlice({
                 description: payload.user.description,
                 followers_count: payload.user.followers_count,
                 followings_count: payload.user.followings_count,
-                // user_id: 0,
-                // is_followed: false
+                user_id: payload.user.id,
+                is_followed: payload.user.is_followed
             }
             return user 
         },
@@ -55,8 +55,8 @@ export const authSlice = createSlice({
                 description: payload.description,
                 followers_count: payload.followers_count,
                 followings_count: payload.followings_count,
-                // user_id: 0,
-                // is_followed: false
+                user_id: payload.user.id,
+                is_followed: payload.user.is_followed
             }
             return user
         },
