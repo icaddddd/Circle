@@ -13,9 +13,9 @@ import SearchController from "../controllers/SearchController";
 
 const router = express.Router();
 
-// router.get("/", (req: Request, res: Response) => {
-//     res.send("Hello from v1")
-// })
+router.get("/", (req: Request, res: Response) => {
+    res.send("Hello from v1")
+})
 
 // router.get("/threads", (req: Request, res: Response) => {
 //     res.status(200).json({
