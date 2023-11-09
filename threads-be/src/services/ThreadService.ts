@@ -60,23 +60,14 @@ class ThreadServices {
 
   async create(req: Request, res: Response): Promise<Response> {
     const content = req.body;
-    const image = req.file.filename;
+    const image = req.file.path;
     const loginSession = res.locals.loginSession.user;
     console.log("login session", loginSession);
     try {
-      cloudinary.config({
-        cloud_name: process.env.CLOUD_NAME,
-        api_key: process.env.API_KEY,
-        api_secret: process.env.API_SECRET,
-      });
-
-      const cloudinaryResponse = await cloudinary.uploader.upload(
-        "./uploads/" + image
-      );
 
       const thread = this.threadRepository.create({
         content: content.content,
-        image: cloudinaryResponse.url,
+        image: image,
         user: loginSession,
       });
 

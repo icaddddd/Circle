@@ -11,7 +11,7 @@ class UserServices {
 
   async patch(req: Request, res: Response) {
     try {
-      const filename = req.file.filename;
+      const filename = req.file ? req.file.path : ""
       const data = req.body;
       const loginSession = res.locals.loginSession;
 
@@ -19,24 +19,24 @@ class UserServices {
         where: { id: loginSession.user.id },
       });
 
-      cloudinary.config({
-        cloud_name: process.env.CLOUD_NAME,
-        api_key: process.env.API_KEY,
-        api_secret: process.env.API_SECRET,
-      });
+      // cloudinary.config({
+      //   cloud_name: process.env.CLOUD_NAME,
+      //   api_key: process.env.API_KEY,
+      //   api_secret: process.env.API_SECRET,
+      // });
 
-      const cloudinaryResponse = await cloudinary.uploader.upload(
-        "./uploads/" + filename
-      );
+      // const cloudinaryResponse = await cloudinary.uploader.upload(
+      //   "./uploads/" + filename
+      // );
 
       user.description = data.description;
       user.fullname = data.fullname;
       user.username = data.username;
-      user.picture = cloudinaryResponse.url;
+      user.picture = filename
 
-      const anu = await this.userRepository.save(user);
+      const updateUser = await this.userRepository.save(user);
 
-      return res.status(200).json(anu);
+      return res.status(200).json(updateUser);
     } catch (error) {
       return res.status(500).json({ error: error });
     }
